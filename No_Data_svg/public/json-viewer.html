@@ -29,6 +29,17 @@
                             <label for="viewTree" class="toggle-btn">Tree View</label>
                         </div>
                     </div>
+                    <div class="edit-controls"
+                        style="display: flex; align-items: center; gap: 15px; margin-left: 20px; border-left: 1px solid #ddd; padding-left: 20px;">
+                        <div class="view-toggle">
+                            <span class="toggle-label">Edit Mode:</span>
+                            <label class="switch">
+                                <input type="checkbox" id="editModeToggle">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <button id="saveBtn" class="save-btn" disabled>💾 Save Changes</button>
+                    </div>
                 </div>
             </div>
             <div id="contentContainer" class="content-container card-view">
