@@ -43,22 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function refreshView() {
         const filteredData = currentQuery ? SearchUtils.search(jsonData, currentQuery) : jsonData;
-
-        if (document.querySelector('input[value="card"]').checked) {
-            renderCardView(filteredData, currentQuery);
-        } else {
-            renderTreeView(filteredData, currentQuery);
-        }
+        renderCardView(filteredData, currentQuery);
         renderSidebar(filteredData);
     }
-
-    // View Toggle Logic
-    viewRadios.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-            if (!jsonData) return;
-            refreshView();
-        });
-    });
 
     // --- Card View Renderer ---
     function renderCardView(data, query = '') {
@@ -224,151 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Tree View Renderer ---
-    function renderTreeView(data, query = '') {
 
-        contentContainer.innerHTML = '';
-
-        if (Object.keys(data).length === 0) {
-            contentContainer.innerHTML = '<div class="loading">No results found</div>';
-            return;
-        }
-
-        const treeRoot = document.createElement('div');
-        treeRoot.className = 'tree-root';
-
-        // Create tree from root object
-        createTreeNodes(data, treeRoot, query, []);
-
-        contentContainer.appendChild(treeRoot);
-    }
-
-    function createTreeNodes(obj, container, query, path = []) {
-        for (const [key, value] of Object.entries(obj)) {
-            const currentPath = [...path, key];
-            const pathString = currentPath.join(' > ');
-            const nodeId = sanitizeId(pathString);
-
-            // Check if this is a leaf node (item with img)
-            if (value.img && typeof value.img === 'string') {
-                const leaf = createTreeLeaf(key, value, query);
-                leaf.id = nodeId; // Add ID to leaf
-                container.appendChild(leaf);
-                continue;
-            }
-
-            // Otherwise it's a branch
-            if (typeof value === 'object' && value !== null) {
-                const node = document.createElement('div');
-                node.className = 'tree-node';
-                node.id = nodeId; // Add ID to branch node
-
-                const item = document.createElement('div');
-                item.className = 'tree-item';
-
-                const label = document.createElement('div');
-                label.className = 'tree-label';
-
-                const toggle = document.createElement('div');
-                toggle.className = 'tree-toggle expanded'; // Default expanded
-                toggle.textContent = '▶';
-
-                const keySpan = document.createElement('span');
-                keySpan.className = 'tree-key';
-                keySpan.innerHTML = SearchUtils.highlightText(key, query);
-
-                const countSpan = document.createElement('span');
-                countSpan.className = 'tree-value-obj';
-                countSpan.textContent = `{ ... }`;
-
-                label.appendChild(toggle);
-                label.appendChild(keySpan);
-                label.appendChild(countSpan);
-
-                const childrenContainer = document.createElement('div');
-                childrenContainer.className = 'tree-children';
-
-                // Toggle functionality
-                label.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const isHidden = childrenContainer.style.display === 'none';
-                    childrenContainer.style.display = isHidden ? 'block' : 'none';
-                    toggle.classList.toggle('expanded', isHidden);
-                });
-
-                item.appendChild(label);
-                node.appendChild(item);
-                node.appendChild(childrenContainer);
-
-                container.appendChild(node);
-
-                // Recurse with updated path
-                createTreeNodes(value, childrenContainer, query, currentPath);
-            }
-        }
-    }
-
-    function createTreeLeaf(key, data, query) {
-        const leaf = document.createElement('div');
-        leaf.className = 'tree-leaf';
-
-        const imgDiv = document.createElement('div');
-        imgDiv.className = 'leaf-image';
-        const img = document.createElement('img');
-        img.src = `img/${data.img}`;
-        img.alt = data.img;
-        imgDiv.appendChild(img);
-
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'leaf-content';
-
-        // Key (Context)
-        const keyRow = document.createElement('div');
-        keyRow.className = 'leaf-row';
-        keyRow.innerHTML = `<div class="leaf-key">Context:</div><div class="leaf-val" style="font-weight:bold;">${SearchUtils.highlightText(key, query)}</div>`;
-        contentDiv.appendChild(keyRow);
-
-        // Filename
-        const fileRow = document.createElement('div');
-        fileRow.className = 'leaf-row';
-        fileRow.innerHTML = `<div class="leaf-key">File:</div><div class="leaf-val filename">${SearchUtils.highlightText(data.img, query)}</div>`;
-        contentDiv.appendChild(fileRow);
-
-        // Text
-        const textRow = document.createElement('div');
-        textRow.className = 'leaf-row';
-        if (isEditMode) {
-            textRow.innerHTML = `<div class="leaf-key">Text:</div>`;
-            const input = document.createElement('input');
-            input.className = 'edit-input';
-            input.value = data.text || '';
-            input.addEventListener('input', (e) => updateData(`${key}`, 'text', e.target.value, data)); // Note: Path handling in tree view is tricky, simplifying for now
-            textRow.appendChild(input);
-        } else if (data.text) {
-            textRow.innerHTML = `<div class="leaf-key">Text:</div><div class="leaf-val">${SearchUtils.highlightText(data.text, query)}</div>`;
-        }
-        if (isEditMode || data.text) contentDiv.appendChild(textRow);
-
-        // Para
-        const paraRow = document.createElement('div');
-        paraRow.className = 'leaf-row';
-        if (isEditMode) {
-            paraRow.innerHTML = `<div class="leaf-key">Para:</div>`;
-            const input = document.createElement('textarea');
-            input.className = 'edit-input';
-            input.value = data.para || '';
-            input.rows = 2;
-            input.addEventListener('input', (e) => updateData(`${key}`, 'para', e.target.value, data));
-            paraRow.appendChild(input);
-        } else if (data.para) {
-            paraRow.innerHTML = `<div class="leaf-key">Para:</div><div class="leaf-val">${SearchUtils.highlightText(data.para, query)}</div>`;
-        }
-        if (isEditMode || data.para) contentDiv.appendChild(paraRow);
-
-        leaf.appendChild(imgDiv);
-        leaf.appendChild(contentDiv);
-
-        return leaf;
-    }
 
     // --- Data Update & Save Logic ---
 
