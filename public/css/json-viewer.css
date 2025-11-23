@@ -293,6 +293,34 @@ input:checked+.slider:before {
     color: #999;
     text-align: right;
 }
+.copy-btn-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 6px;
+    background-color: transparent;
+    color: #666;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    transition: all 0.2s;
+    opacity: 0.6;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.copy-btn-icon:hover {
+    opacity: 1;
+    background-color: rgba(0, 122, 204, 0.1);
+    color: #007acc;
+}
+.copy-btn-icon:active {
+    transform: scale(0.9);
+    background-color: rgba(0, 122, 204, 0.2);
+}
 /* Tree View Styles */
 .tree-view {
     background: white;

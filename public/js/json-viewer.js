@@ -136,6 +136,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // item.path is like "hr > employee > default"
         card.id = sanitizeId(item.path);
 
+        // Add copy button (positioned absolutely in top-right)
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn-icon';
+        copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M3 10.5V3.5C3 2.67157 3.67157 2 4.5 2H10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>`;
+        copyBtn.title = 'Copy as TypeScript variables';
+        copyBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            copyCardPath(item.path);
+        });
+        card.appendChild(copyBtn);
+
         const pathDiv = document.createElement('div');
         pathDiv.className = 'card-path';
         // Remove the top-level category from path for cleaner display since it's already grouped
@@ -205,13 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
         card.appendChild(pathDiv);
         card.appendChild(imgDiv);
         card.appendChild(contentDiv);
-        if (!isEditMode) card.appendChild(document.createElement('div')); // Spacer or remove if not needed
 
         return card;
     }
 
     // --- Tree View Renderer ---
     function renderTreeView(data, query = '') {
+
         contentContainer.innerHTML = '';
 
         if (Object.keys(data).length === 0) {
@@ -627,6 +641,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Fallback: return a light gray background
         return '#f9f9f9';
+    }
+
+    function copyCardPath(path) {
+        // Parse the path: "hr > employee > default"
+        const parts = path.split(' > ');
+
+        let moduleName = '';
+        let pageName = '';
+        let currentStatus = '';
+
+        if (parts.length >= 1) moduleName = parts[0];
+        if (parts.length >= 2) pageName = parts[1];
+        if (parts.length >= 3) currentStatus = parts[2];
+
+        // Find all statuses for this module+page combination in the JSON data
+        const allStatuses = [];
+        if (jsonData && jsonData[moduleName] && jsonData[moduleName][pageName]) {
+            const pageData = jsonData[moduleName][pageName];
+            for (const status in pageData) {
+                if (pageData.hasOwnProperty(status)) {
+                    allStatuses.push(status);
+                }
+            }
+        }
+
+        // Build TypeScript code
+        let tsCode = `moduleName: any = '${moduleName}';\npageName: any = '${pageName}';\n`;
+
+        if (allStatuses.length === 1) {
+            // Single status - use noDataStatus
+            tsCode += `noDataStatus: any = '${allStatuses[0]}';`;
+        } else if (allStatuses.length > 1) {
+            // Multiple statuses - use noDataStatus, noDataStatus1, noDataStatus2, etc.
+            allStatuses.forEach((status, index) => {
+                const varName = index === 0 ? 'noDataStatus' : `noDataStatus${index}`;
+                tsCode += `${varName}: any = '${status}';\n`;
+            });
+            // Remove trailing newline
+            tsCode = tsCode.trimEnd();
+        } else {
+            // No statuses found (shouldn't happen, but fallback)
+            tsCode += `noDataStatus: any = '${currentStatus}';`;
+        }
+
+        // Copy to clipboard
+        navigator.clipboard.writeText(tsCode).then(() => {
+            // Show success feedback
+            showCopyFeedback('Copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+            showCopyFeedback('Failed to copy', true);
+        });
+    }
+
+    function showCopyFeedback(message, isError = false) {
+        // Create temporary feedback element
+        const feedback = document.createElement('div');
+        feedback.className = 'copy-feedback';
+        feedback.textContent = message;
+        feedback.style.position = 'fixed';
+        feedback.style.top = '20px';
+        feedback.style.right = '20px';
+        feedback.style.padding = '12px 20px';
+        feedback.style.backgroundColor = isError ? '#f44336' : '#4caf50';
+        feedback.style.color = 'white';
+        feedback.style.borderRadius = '4px';
+        feedback.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+        feedback.style.zIndex = '10000';
+        feedback.style.fontSize = '14px';
+        feedback.style.fontWeight = 'bold';
+
+        document.body.appendChild(feedback);
+
+        setTimeout(() => {
+            feedback.style.transition = 'opacity 0.3s';
+            feedback.style.opacity = '0';
+            setTimeout(() => {
+                document.body.removeChild(feedback);
+            }, 300);
+        }, 2000);
     }
 
 });
