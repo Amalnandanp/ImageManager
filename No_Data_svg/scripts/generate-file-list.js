@@ -3,14 +3,14 @@
 /**
  * Generate file-list.json for the image viewer
  * This script scans the img folder and creates a JSON file with all image files
- * 
+ *
  * Usage: node generate-file-list.js
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const IMG_FOLDER = path.join(__dirname, 'img');
+const IMG_FOLDER = path.join(__dirname, '../public/img');
 const OUTPUT_FILE = path.join(IMG_FOLDER, 'file-list.json');
 
 // Read all files from the img folder
@@ -32,7 +32,7 @@ fs.readdir(IMG_FOLDER, (err, files) => {
         // Special files go to the end
         const aIsSpecial = a === 'filter.svg' || a === 'search.svg';
         const bIsSpecial = b === 'filter.svg' || b === 'search.svg';
-        
+
         if (aIsSpecial && !bIsSpecial) return 1;
         if (!aIsSpecial && bIsSpecial) return -1;
         if (aIsSpecial && bIsSpecial) return a.localeCompare(b);

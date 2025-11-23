@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -347,7 +346,7 @@
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
-            box-shadow: 0 0 4px rgba(0,0,0,0.5);
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
         }
 
         .visual-center-marker[style*="background-color: rgb(255, 152, 0)"] {
@@ -357,8 +356,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         .image-info {
@@ -377,14 +383,10 @@
             color: #007acc;
         }
 
-
-
         .correct-dimensions {
             background-color: #d4edda !important;
             border: 2px solid #28a745;
         }
-
-
 
         .missing-images {
             background: white;
@@ -550,7 +552,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="main-content">
@@ -563,76 +564,61 @@
                         <input type="checkbox" id="mainCorrectDimensionCheck" checked style="transform: scale(1.2);">
                     </div>
                     <div class="filter-dropdown-container" style="position: relative;">
-                        <button id="filterDropdownBtn" style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer; font-size: 14px;">
-                            Filters ▼
-                        </button>
-                        <div id="filterDropdown" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; min-width: 250px; padding: 15px;">
+                        <button id="filterDropdownBtn"
+                            style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer; font-size: 14px;">
+                            Filters ▼ </button>
+                        <div id="filterDropdown"
+                            style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; min-width: 250px; padding: 15px;">
                             <!-- Usage Filter -->
                             <div style="margin-bottom: 15px;">
                                 <h4 style="margin: 0 0 8px 0; font-size: 14px; color: #333;">Usage Filter</h4>
                                 <div style="display: flex; flex-direction: column; gap: 5px;">
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
-                                        <input type="radio" name="usageFilter" value="all" checked>
-                                        All Images
-                                    </label>
+                                        <input type="radio" name="usageFilter" value="all" checked> All Images </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
-                                        <input type="radio" name="usageFilter" value="used">
-                                        Used Images Only
-                                    </label>
+                                        <input type="radio" name="usageFilter" value="used"> Used Images Only </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
-                                        <input type="radio" name="usageFilter" value="unused">
-                                        Unused Images Only
+                                        <input type="radio" name="usageFilter" value="unused"> Unused Images Only
                                     </label>
                                 </div>
                             </div>
-
                             <!-- Dimension Filter -->
                             <div style="margin-bottom: 15px;">
                                 <h4 style="margin: 0 0 8px 0; font-size: 14px; color: #333;">Dimension Filter</h4>
                                 <div style="display: flex; flex-direction: column; gap: 5px;">
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
                                         <input type="checkbox" class="dimension-filter" value="correct" checked>
-                                        <span style="color: #28a745;">●</span> Correct Dimensions (196×121)
-                                    </label>
+                                        <span style="color: #28a745;">●</span> Correct Dimensions (196×121) </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
                                         <input type="checkbox" class="dimension-filter" value="incorrect" checked>
-                                        <span style="color: #fd7e14;">●</span> Incorrect Dimensions
-                                    </label>
+                                        <span style="color: #fd7e14;">●</span> Incorrect Dimensions </label>
                                 </div>
                             </div>
-
                             <!-- Category Filter -->
                             <div>
                                 <h4 style="margin: 0 0 8px 0; font-size: 14px; color: #333;">Category Filter</h4>
                                 <div style="display: flex; flex-direction: column; gap: 5px;">
-                                    <label style="display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 5px;">
-                                        <input type="checkbox" id="selectAllCategories" checked>
-                                        Select All
-                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 5px;">
+                                        <input type="checkbox" id="selectAllCategories" checked> Select All </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
                                         <input type="checkbox" class="category-filter" value="hr" checked>
-                                        <span style="color: #2196f3;">●</span> HR
-                                    </label>
+                                        <span style="color: #2196f3;">●</span> HR </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
                                         <input type="checkbox" class="category-filter" value="settings" checked>
-                                        <span style="color: #9c27b0;">●</span> Settings
-                                    </label>
+                                        <span style="color: #9c27b0;">●</span> Settings </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
                                         <input type="checkbox" class="category-filter" value="profile" checked>
-                                        <span style="color: #4caf50;">●</span> Profile
-                                    </label>
+                                        <span style="color: #4caf50;">●</span> Profile </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
                                         <input type="checkbox" class="category-filter" value="request" checked>
-                                        <span style="color: #ff9800;">●</span> Request
-                                    </label>
+                                        <span style="color: #ff9800;">●</span> Request </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
                                         <input type="checkbox" class="category-filter" value="other" checked>
-                                        <span style="color: #e91e63;">●</span> Other
-                                    </label>
+                                        <span style="color: #e91e63;">●</span> Other </label>
                                     <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
                                         <input type="checkbox" class="category-filter" value="shared" checked>
-                                        <span style="color: #8bc34a;">●</span> Shared
-                                    </label>
+                                        <span style="color: #8bc34a;">●</span> Shared </label>
                                 </div>
                             </div>
                         </div>
@@ -647,9 +633,8 @@
             <div class="image-grid" id="imageGrid">
             </div>
         </div>
-
         <div class="toolkit">
-            <!-- Incorrect Dimensions List (Compact) -->    
+            <!-- Incorrect Dimensions List (Compact) -->
             <div class="incorrect-dimensions" id="incorrectDimensions" style="margin-bottom: 15px; display: none;">
                 <h4 style="margin: 0 0 8px 0; color: #fd7e14; font-size: 14px;" id="incorrectDimensionsTitle">Incorrect
                     Dimensions</h4>
@@ -657,7 +642,6 @@
                     <!-- Incorrect dimension images will be populated here -->
                 </ol>
             </div>
-
             <!-- Missing Names List (Compact) -->
             <div class="missing-images" id="missingImages" style="margin-bottom: 15px; display: none;">
                 <h4 style="margin: 0 0 8px 0; color: #dc3545; font-size: 14px;" id="missingTitle">Missing Names</h4>
@@ -665,7 +649,6 @@
                     <!-- Missing images will be populated here -->
                 </ol>
             </div>
-
             <!-- Unused Images List (Compact) -->
             <div class="unused-images" id="unusedImages" style="margin-bottom: 15px; display: none;">
                 <h4 style="margin: 0 0 8px 0; color: #6c757d; font-size: 14px;" id="unusedTitle">Unused Images</h4>
@@ -673,15 +656,10 @@
                     <!-- Unused images will be populated here -->
                 </ol>
             </div>
-
             <h3>Guide Line Toolkit</h3>
-
             <!-- Combined Guidelines Controls -->
             <div class="control-group">
                 <h4>Guidelines</h4>
-
-
-
                 <!-- Center Guidelines -->
                 <div style="display: flex; gap: 15px; margin: 8px 0;">
                     <div class="control-item" style="margin-bottom: 0;">
@@ -693,13 +671,11 @@
                         <label for="centerHorizontal">Horizontal Center</label>
                     </div>
                 </div>
-
                 <!-- Visual Center Marker -->
                 <div class="control-item">
                     <input type="checkbox" id="showVisualCenter">
                     <label for="showVisualCenter">Show Visual Center</label>
                 </div>
-
                 <!-- Division Guidelines -->
                 <div class="control-item">
                     <input type="checkbox" id="enableVerticalDivisions">
@@ -715,11 +691,9 @@
                         style="font-size: 10px; color: #888; margin-left: 4px;">40px</span>
                 </div>
             </div>
-
             <!-- Padding Guidelines -->
             <div class="control-group">
                 <h4>Padding Guidelines</h4>
-
                 <!-- All Padding -->
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
                     <input type="checkbox" id="enableAllPadding">
@@ -727,7 +701,6 @@
                     <input type="number" id="allPadding" min="0" max="100" value="15" style="width: 60px;">
                     <span style="font-size: 12px;">px</span>
                 </div>
-
                 <!-- Individual Padding in 2x2 Grid -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
                     <div style="display: flex; align-items: center; gap: 4px;">
@@ -751,16 +724,9 @@
                         <input type="number" id="leftPadding" min="0" max="100" value="10" style="width: 50px;">
                     </div>
                 </div>
-
-
             </div>
-
-
         </div>
     </div>
-
-
-
     <script>
         // CONFIGURATION: Set the range for missing image detection
         const BG_START = 1;    // Start number (bg1)
@@ -819,14 +785,14 @@
         // Function to automatically discover all SVG files in the img folder
         async function discoverImageFiles() {
             const imgFolder = './img/';
-            
+
             // Try to load the file list from a generated JSON file first
             try {
                 const response = await fetch('./img/file-list.json');
                 if (response.ok) {
                     const data = await response.json();
                     console.log('✅ Loaded file list from file-list.json');
-                    
+
                     // Extract max bg number from the files
                     let maxBgNumber = 0;
                     data.files.forEach(filename => {
@@ -840,7 +806,7 @@
                     });
                     BG_END = maxBgNumber;
                     console.log(`📊 Detected bg range: bg${BG_START}.svg to bg${BG_END}.svg`);
-                    
+
                     return data.files.map(f => imgFolder + f);
                 }
             } catch (e) {
@@ -851,12 +817,12 @@
             // Start with a reasonable upper limit and probe to find the max
             const probeLimit = 200;
             const patterns = [];
-            
+
             // Add bg files from BG_START to probeLimit
             for (let i = BG_START; i <= probeLimit; i++) {
                 patterns.push(`bg${i}.svg`);
             }
-            
+
             // Add required utility files
             patterns.push('filter.svg', 'search.svg');
 
@@ -875,7 +841,7 @@
 
             const results = await Promise.all(existenceChecks);
             const existingFiles = results.filter(f => f !== null);
-            
+
             // Find the maximum bg number from existing files
             let maxBgNumber = 0;
             existingFiles.forEach(filename => {
@@ -888,10 +854,10 @@
                 }
             });
             BG_END = maxBgNumber;
-            
+
             console.log(`✅ Discovered ${existingFiles.length} SVG files`);
             console.log(`📊 Detected bg range: bg${BG_START}.svg to bg${BG_END}.svg`);
-            
+
             return existingFiles.map(f => imgFolder + f);
         }
 
@@ -963,14 +929,14 @@
             // Add breadcrumb information
             const breadcrumbDiv = document.createElement('div');
             breadcrumbDiv.className = 'breadcrumb-info';
-            
+
             // Try to find usage data with both .svg and .png extensions
             const baseFilename = filename.replace(/\.(svg|png)$/i, '');
-            const usagePaths = imageUsageData[filename] || 
-                              imageUsageData[baseFilename + '.png'] || 
-                              imageUsageData[baseFilename + '.svg'] || 
-                              [];
-            
+            const usagePaths = imageUsageData[filename] ||
+                imageUsageData[baseFilename + '.png'] ||
+                imageUsageData[baseFilename + '.svg'] ||
+                [];
+
             if (usagePaths.length > 0) {
                 usagePaths.forEach(path => {
                     const category = path.split(' > ')[0].toLowerCase();
@@ -1282,7 +1248,7 @@
             object.style.width = '0';
             object.style.height = '0';
 
-            object.onload = function() {
+            object.onload = function () {
                 try {
                     const svgDoc = object.contentDocument;
                     if (svgDoc) {
@@ -1300,7 +1266,7 @@
                 }
             };
 
-            object.onerror = function() {
+            object.onerror = function () {
                 console.warn('Could not load SVG as object');
                 addEstimatedVisualCenter(img, overlay);
                 document.body.removeChild(object);
@@ -1380,7 +1346,7 @@
         // Function to load and process image usage data
         function loadImageUsageData() {
             // Try fetch first (works with live server)
-            fetch('./image-data.json')
+            fetch('./data/image-data.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -1408,19 +1374,19 @@
         function loadJSONViaScript() {
             // Create a script element to load JSON as JSONP
             const script = document.createElement('script');
-            script.src = './image-data.json';
-            script.onerror = function() {
+            script.src = './data/image-data.json';
+            script.onerror = function () {
                 console.error('Could not load JSON via script tag either');
                 console.log('Please use a live server or manually embed the JSON data');
                 showJSONLoadError();
             };
-            
+
             // Try to read as text using XMLHttpRequest (sometimes works)
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', './image-data.json', true);
+            xhr.open('GET', './data/image-data.json', true);
             xhr.overrideMimeType('application/json');
-            
-            xhr.onload = function() {
+
+            xhr.onload = function () {
                 if (xhr.status === 200 || xhr.status === 0) { // 0 for file:// protocol
                     try {
                         const data = JSON.parse(xhr.responseText);
@@ -1439,12 +1405,12 @@
                     showJSONLoadError();
                 }
             };
-            
-            xhr.onerror = function() {
+
+            xhr.onerror = function () {
                 console.error('XHR request failed');
                 showJSONLoadError();
             };
-            
+
             try {
                 xhr.send();
             } catch (e) {
@@ -1460,7 +1426,7 @@
                 filterBtn.style.backgroundColor = '#d4edda';
                 filterBtn.style.borderColor = '#28a745';
                 filterBtn.title = 'Breadcrumb data loaded successfully';
-                
+
                 // Reset to normal after 2 seconds
                 setTimeout(() => {
                     filterBtn.style.backgroundColor = 'white';
@@ -1477,7 +1443,7 @@
             console.log('   1. Use a live server (recommended)');
             console.log('   2. Or run: python -m http.server 8000');
             console.log('   3. Then open: http://localhost:8000/image-viewer.html');
-            
+
             // Add visual indicator in the UI
             const filterBtn = document.getElementById('filterDropdownBtn');
             if (filterBtn) {
@@ -1520,59 +1486,59 @@
             const unusedList = document.getElementById('unusedList');
             const unusedSection = document.getElementById('unusedImages');
             const unusedTitle = document.getElementById('unusedTitle');
-            
+
             // Clear existing items
             unusedList.innerHTML = '';
-            
+
             const unusedImages = [];
-            
+
             // Check each SVG file to see if it's used
             svgFiles.forEach(filepath => {
                 // Extract just the filename from the path
                 const filename = filepath.split('/').pop();
                 const baseFilename = filename.replace(/\.(svg|png)$/i, '');
-                const usagePaths = imageUsageData[filename] || 
-                                  imageUsageData[baseFilename + '.png'] || 
-                                  imageUsageData[baseFilename + '.svg'] || 
-                                  [];
-                
+                const usagePaths = imageUsageData[filename] ||
+                    imageUsageData[baseFilename + '.png'] ||
+                    imageUsageData[baseFilename + '.svg'] ||
+                    [];
+
                 if (usagePaths.length === 0) {
                     unusedImages.push(filename);
                 }
             });
-            
+
             // Sort unused images
             unusedImages.sort((a, b) => {
                 const aMatch = a.match(/^bg(\d+)\.svg$/);
                 const bMatch = b.match(/^bg(\d+)\.svg$/);
-                
+
                 if (aMatch && bMatch) {
                     const aNum = parseInt(aMatch[1]);
                     const bNum = parseInt(bMatch[1]);
                     return aNum - bNum;
                 }
-                
+
                 return a.localeCompare(b);
             });
-            
+
             if (unusedImages.length === 0) {
                 unusedSection.style.display = 'none';
             } else {
                 unusedSection.style.display = 'block';
                 unusedTitle.textContent = `Unused Images (${unusedImages.length})`;
-                
+
                 unusedImages.forEach(filename => {
                     const unusedItem = document.createElement('li');
                     unusedItem.className = 'unused-item';
                     const displayName = filename.replace(/\.svg$/i, '');
                     unusedItem.textContent = displayName;
                     unusedItem.title = filename;
-                    
+
                     // Add click to scroll functionality
                     unusedItem.addEventListener('click', () => {
                         scrollToImage(filename);
                     });
-                    
+
                     unusedList.appendChild(unusedItem);
                 });
             }
@@ -1943,5 +1909,4 @@
 
     </script>
 </body>
-
 </html>
