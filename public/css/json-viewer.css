@@ -243,6 +243,8 @@ input:checked+.slider:before {
     padding: 15px;
     background: #f9f9f9;
     transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    /* For absolute positioning of copy button */
 }
 .data-card:hover {
     transform: translateY(-2px);
@@ -293,7 +295,7 @@ input:checked+.slider:before {
     color: #999;
     text-align: right;
 }
-.copy-btn-icon {
+.data-card .copy-btn-icon {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -312,12 +314,12 @@ input:checked+.slider:before {
     align-items: center;
     justify-content: center;
 }
-.copy-btn-icon:hover {
+.data-card .copy-btn-icon:hover {
     opacity: 1;
     background-color: rgba(0, 122, 204, 0.1);
     color: #007acc;
 }
-.copy-btn-icon:active {
+.data-card .copy-btn-icon:active {
     transform: scale(0.9);
     background-color: rgba(0, 122, 204, 0.2);
 }
