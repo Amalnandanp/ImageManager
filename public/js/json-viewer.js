@@ -343,54 +343,77 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (typeof featureData !== 'object' || featureData === null) continue;
 
                     const featureNode = document.createElement('div');
+                    const statuses = Object.keys(featureData);
+                    const isSingleDefault = statuses.length === 1 && statuses[0] === 'default';
 
                     const featureTitle = document.createElement('div');
                     featureTitle.className = 'sidebar-group-title';
                     featureTitle.style.fontSize = '13px';
                     featureTitle.style.color = '#555';
-                    featureTitle.innerHTML = `<span class="sidebar-toggle expanded">▶</span> <span title="${feature}">${feature}</span>`;
 
-                    const featureChildren = document.createElement('div');
-                    featureChildren.className = 'sidebar-node';
+                    if (isSingleDefault) {
+                        // Case 1: Single 'default' status - Make feature title clickable directly
+                        featureTitle.innerHTML = `<span style="padding-left: 12px;" title="${feature}">${feature}</span>`;
+                        featureTitle.classList.add('sidebar-item'); // Add hover effect
+                        featureTitle.style.display = 'block'; // Ensure block display like other items
 
-                    featureTitle.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const isHidden = featureChildren.style.display === 'none';
-                        featureChildren.style.display = isHidden ? 'block' : 'none';
-                        featureTitle.querySelector('.sidebar-toggle').classList.toggle('expanded', isHidden);
-                    });
-
-                    featureNode.appendChild(featureTitle);
-
-                    // Level 3: Status (Leaf nodes or close to it)
-                    for (const [status, statusData] of Object.entries(featureData)) {
-                        // Check if this is the content node (has img/text)
-                        // In the JSON structure: hr -> employee -> default (content)
-                        // So status is the key "default"
-
-                        const itemPath = `${module} > ${feature} > ${status}`;
+                        const itemPath = `${module} > ${feature} > default`;
                         const itemId = sanitizeId(itemPath);
 
-                        const statusItem = document.createElement('a');
-                        statusItem.className = 'sidebar-item';
-                        statusItem.textContent = status;
-                        statusItem.title = status; // Tooltip for long names
-
-                        statusItem.addEventListener('click', (e) => {
+                        featureTitle.addEventListener('click', (e) => {
                             e.preventDefault();
                             e.stopPropagation();
 
                             // Highlight active item
                             document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-                            statusItem.classList.add('active');
+                            featureTitle.classList.add('active');
 
                             scrollToElement(itemId);
                         });
 
-                        featureChildren.appendChild(statusItem);
+                        featureNode.appendChild(featureTitle);
+                    } else {
+                        // Case 2: Multiple statuses or non-default status - Show toggle and children
+                        featureTitle.innerHTML = `<span class="sidebar-toggle expanded">▶</span> <span title="${feature}">${feature}</span>`;
+
+                        const featureChildren = document.createElement('div');
+                        featureChildren.className = 'sidebar-node';
+
+                        featureTitle.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const isHidden = featureChildren.style.display === 'none';
+                            featureChildren.style.display = isHidden ? 'block' : 'none';
+                            featureTitle.querySelector('.sidebar-toggle').classList.toggle('expanded', isHidden);
+                        });
+
+                        featureNode.appendChild(featureTitle);
+
+                        // Level 3: Status (Leaf nodes)
+                        for (const [status, statusData] of Object.entries(featureData)) {
+                            const itemPath = `${module} > ${feature} > ${status}`;
+                            const itemId = sanitizeId(itemPath);
+
+                            const statusItem = document.createElement('a');
+                            statusItem.className = 'sidebar-item';
+                            statusItem.textContent = status;
+                            statusItem.title = status; // Tooltip for long names
+
+                            statusItem.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+
+                                // Highlight active item
+                                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                                statusItem.classList.add('active');
+
+                                scrollToElement(itemId);
+                            });
+
+                            featureChildren.appendChild(statusItem);
+                        }
+                        featureNode.appendChild(featureChildren);
                     }
 
-                    featureNode.appendChild(featureChildren);
                     moduleChildren.appendChild(featureNode);
                 }
             }
