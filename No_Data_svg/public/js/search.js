@@ -70,10 +70,11 @@ const SearchUtils = {
      */
     fuzzyMatch: function (text, query) {
         if (!text) return false;
-        const normalizedText = text.toLowerCase();
+        const normalizedText = String(text).toLowerCase();
+        const normalizedQuery = String(query).toLowerCase();
 
         // Split query into terms (e.g., "hr employee" -> ["hr", "employee"])
-        const terms = query.split(/\s+/);
+        const terms = normalizedQuery.split(/\s+/);
 
         // Check if ALL terms are present in the text
         return terms.every(term => normalizedText.includes(term));
