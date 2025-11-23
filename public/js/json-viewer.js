@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const contentContainer = document.getElementById('contentContainer');
+    const sidebarContainer = document.getElementById('sidebarContainer');
     const viewRadios = document.querySelectorAll('input[name="viewMode"]');
     const searchInput = document.getElementById('searchInput');
     const editModeToggle = document.getElementById('editModeToggle');
@@ -15,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             jsonData = data;
+            jsonData = data;
             renderCardView(data);
+            renderSidebar(data);
         })
         .catch(error => {
             contentContainer.innerHTML = `<div class="loading" style="color: #dc3545;">Error loading data: ${error.message}</div>`;
@@ -46,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             renderTreeView(filteredData, currentQuery);
         }
+        renderSidebar(filteredData);
     }
 
     // View Toggle Logic
@@ -69,10 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const [category, catData] of Object.entries(data)) {
             const section = document.createElement('div');
             section.className = `category-section category-${category}`;
+            section.id = sanitizeId(category);
+
+            // Get color for this module
+            const moduleColor = getModuleColor(category);
+            const moduleBgColor = getModuleBgColor(category);
+
+            // Apply background color to section
+            section.style.backgroundColor = moduleBgColor;
 
             const title = document.createElement('h2');
             title.className = 'category-title';
             title.innerHTML = SearchUtils.highlightText(category, query);
+            title.style.color = moduleColor;
+            title.style.borderBottomColor = moduleColor;
             section.appendChild(title);
 
             const grid = document.createElement('div');
@@ -118,6 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function createCard(item, query = '') {
         const card = document.createElement('div');
         card.className = 'data-card';
+        // Create a unique ID for the card based on its path
+        // item.path is like "hr > employee > default"
+        card.id = sanitizeId(item.path);
 
         const pathDiv = document.createElement('div');
         pathDiv.className = 'card-path';
@@ -206,16 +223,21 @@ document.addEventListener('DOMContentLoaded', () => {
         treeRoot.className = 'tree-root';
 
         // Create tree from root object
-        createTreeNodes(data, treeRoot, query);
+        createTreeNodes(data, treeRoot, query, []);
 
         contentContainer.appendChild(treeRoot);
     }
 
-    function createTreeNodes(obj, container, query) {
+    function createTreeNodes(obj, container, query, path = []) {
         for (const [key, value] of Object.entries(obj)) {
+            const currentPath = [...path, key];
+            const pathString = currentPath.join(' > ');
+            const nodeId = sanitizeId(pathString);
+
             // Check if this is a leaf node (item with img)
             if (value.img && typeof value.img === 'string') {
                 const leaf = createTreeLeaf(key, value, query);
+                leaf.id = nodeId; // Add ID to leaf
                 container.appendChild(leaf);
                 continue;
             }
@@ -224,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typeof value === 'object' && value !== null) {
                 const node = document.createElement('div');
                 node.className = 'tree-node';
+                node.id = nodeId; // Add ID to branch node
 
                 const item = document.createElement('div');
                 item.className = 'tree-item';
@@ -264,8 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 container.appendChild(node);
 
-                // Recurse
-                createTreeNodes(value, childrenContainer, query);
+                // Recurse with updated path
+                createTreeNodes(value, childrenContainer, query, currentPath);
             }
         }
     }
@@ -397,4 +420,213 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+    // --- Sidebar Renderer ---
+    function renderSidebar(data) {
+        sidebarContainer.innerHTML = '';
+
+        const title = document.createElement('div');
+        title.className = 'sidebar-title';
+        title.textContent = 'Navigation';
+        sidebarContainer.appendChild(title);
+
+        const tree = document.createElement('div');
+        tree.className = 'sidebar-tree';
+
+        // Level 1: Module
+        for (const [module, moduleData] of Object.entries(data)) {
+            const moduleColor = getModuleColor(module);
+            const moduleBgColor = getModuleBgColor(module);
+
+            // Create a wrapper for the entire module section
+            const moduleWrapper = document.createElement('div');
+            moduleWrapper.className = 'sidebar-module-wrapper';
+            moduleWrapper.style.backgroundColor = moduleBgColor;
+            moduleWrapper.style.borderTop = `3px solid ${moduleColor}`;
+            moduleWrapper.style.borderRadius = '4px';
+            moduleWrapper.style.padding = '8px';
+            moduleWrapper.style.marginBottom = '8px';
+
+            const moduleNode = document.createElement('div');
+
+            const moduleTitle = document.createElement('div');
+            moduleTitle.className = 'sidebar-group-title';
+            moduleTitle.innerHTML = `<span class="sidebar-toggle expanded">▶</span> <span title="${module}">${module}</span>`;
+            moduleTitle.style.color = moduleColor;
+            moduleTitle.style.fontWeight = 'bold';
+            moduleTitle.style.backgroundColor = 'transparent'; // Remove individual background
+
+            const moduleChildren = document.createElement('div');
+            moduleChildren.className = 'sidebar-node';
+
+            // Toggle logic
+            moduleTitle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = moduleChildren.style.display === 'none';
+                moduleChildren.style.display = isHidden ? 'block' : 'none';
+                moduleTitle.querySelector('.sidebar-toggle').classList.toggle('expanded', isHidden);
+            });
+
+            // Scroll to module section
+            moduleTitle.addEventListener('click', (e) => {
+                // Only scroll if not clicking the toggle directly (optional, but good UX)
+                // Actually, let's make the text span clickable for scrolling
+            });
+            const moduleTextSpan = moduleTitle.querySelector('span:last-child');
+            moduleTextSpan.addEventListener('click', (e) => {
+                e.stopPropagation();
+                scrollToElement(sanitizeId(module));
+            });
+
+            moduleNode.appendChild(moduleTitle);
+
+            // Level 2: Feature
+            if (typeof moduleData === 'object' && moduleData !== null) {
+                for (const [feature, featureData] of Object.entries(moduleData)) {
+                    // Skip if featureData is not an object (e.g. if it's a direct property, though unlikely in this structure)
+                    if (typeof featureData !== 'object' || featureData === null) continue;
+
+                    const featureNode = document.createElement('div');
+
+                    const featureTitle = document.createElement('div');
+                    featureTitle.className = 'sidebar-group-title';
+                    featureTitle.style.fontSize = '13px';
+                    featureTitle.style.color = '#555';
+                    featureTitle.innerHTML = `<span class="sidebar-toggle expanded">▶</span> <span title="${feature}">${feature}</span>`;
+
+                    const featureChildren = document.createElement('div');
+                    featureChildren.className = 'sidebar-node';
+
+                    featureTitle.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const isHidden = featureChildren.style.display === 'none';
+                        featureChildren.style.display = isHidden ? 'block' : 'none';
+                        featureTitle.querySelector('.sidebar-toggle').classList.toggle('expanded', isHidden);
+                    });
+
+                    featureNode.appendChild(featureTitle);
+
+                    // Level 3: Status (Leaf nodes or close to it)
+                    for (const [status, statusData] of Object.entries(featureData)) {
+                        // Check if this is the content node (has img/text)
+                        // In the JSON structure: hr -> employee -> default (content)
+                        // So status is the key "default"
+
+                        const itemPath = `${module} > ${feature} > ${status}`;
+                        const itemId = sanitizeId(itemPath);
+
+                        const statusItem = document.createElement('a');
+                        statusItem.className = 'sidebar-item';
+                        statusItem.textContent = status;
+                        statusItem.title = status; // Tooltip for long names
+
+                        statusItem.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            // Highlight active item
+                            document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                            statusItem.classList.add('active');
+
+                            scrollToElement(itemId);
+                        });
+
+                        featureChildren.appendChild(statusItem);
+                    }
+
+                    featureNode.appendChild(featureChildren);
+                    moduleChildren.appendChild(featureNode);
+                }
+            }
+
+            moduleNode.appendChild(moduleChildren);
+            moduleWrapper.appendChild(moduleNode);
+            tree.appendChild(moduleWrapper);
+        }
+
+        sidebarContainer.appendChild(tree);
+    }
+
+    function scrollToElement(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            // Scroll with offset for sticky header if needed, or just scrollIntoView
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Highlight the card temporarily
+            element.style.transition = 'box-shadow 0.5s';
+            element.style.boxShadow = '0 0 0 4px rgba(33, 150, 243, 0.5)';
+            setTimeout(() => {
+                element.style.boxShadow = '';
+            }, 2000);
+        } else {
+            console.warn('Element not found:', id);
+        }
+    }
+
+    function sanitizeId(str) {
+        // Replace " > " with "-" and other non-alphanumeric chars with "-"
+        return 'node-' + str.replace(/\s>\s/g, '-').replace(/[^a-zA-Z0-9-_]/g, '-').toLowerCase();
+    }
+
+    function getModuleColor(moduleName) {
+        // Map module names to CSS variables
+        const colorMap = {
+            'hr': '--color-hr',
+            'settings': '--color-settings',
+            'profile': '--color-profile',
+            'request': '--color-request',
+            'other': '--color-other',
+            'shared': '--color-shared'
+        };
+
+        // Get the CSS variable name for this module
+        const cssVarName = colorMap[moduleName.toLowerCase()];
+
+        if (cssVarName) {
+            // Get the computed value of the CSS variable
+            return getComputedStyle(document.documentElement).getPropertyValue(cssVarName).trim();
+        }
+
+        // Fallback: generate a color from a palette if module not in map
+        const fallbackColors = [
+            '#009688', // Teal
+            '#673ab7', // Deep Purple
+            '#f44336', // Red
+            '#3f51b5', // Indigo
+            '#795548', // Brown
+            '#607d8b'  // Blue Grey
+        ];
+
+        let hash = 0;
+        for (let i = 0; i < moduleName.length; i++) {
+            hash = moduleName.charCodeAt(i) + ((hash << 5) - hash);
+        }
+
+        const index = Math.abs(hash) % fallbackColors.length;
+        return fallbackColors[index];
+    }
+
+    function getModuleBgColor(moduleName) {
+        // Map module names to background CSS variables
+        const bgColorMap = {
+            'hr': '--bg-hr',
+            'settings': '--bg-settings',
+            'profile': '--bg-profile',
+            'request': '--bg-request',
+            'other': '--bg-other',
+            'shared': '--bg-shared'
+        };
+
+        // Get the CSS variable name for this module
+        const cssVarName = bgColorMap[moduleName.toLowerCase()];
+
+        if (cssVarName) {
+            // Get the computed value of the CSS variable
+            return getComputedStyle(document.documentElement).getPropertyValue(cssVarName).trim();
+        }
+
+        // Fallback: return a light gray background
+        return '#f9f9f9';
+    }
+
 });
