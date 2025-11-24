@@ -9,7 +9,7 @@ const SearchUtils = {
      * @param {String} query - The search query
      * @returns {Object} - Filtered data containing only matching items (preserving structure)
      */
-    search: function (data, query) {
+    search: function (data, query, path = []) {
         if (!query || query.trim() === '') {
             return data;
         }
@@ -19,16 +19,18 @@ const SearchUtils = {
         let hasMatch = false;
 
         for (const [key, value] of Object.entries(data)) {
+            const currentPath = [...path, key];
+
             // If it's an item (has img), check if it matches
             if (value.img && typeof value.img === 'string') {
-                if (this.isMatch(key, value, normalizedQuery)) {
+                if (this.isMatch(currentPath, value, normalizedQuery)) {
                     result[key] = value;
                     hasMatch = true;
                 }
             }
             // If it's a category/object, recurse
             else if (typeof value === 'object' && value !== null) {
-                const subResult = this.search(value, normalizedQuery);
+                const subResult = this.search(value, normalizedQuery, currentPath);
                 if (Object.keys(subResult).length > 0) {
                     result[key] = subResult;
                     hasMatch = true;
@@ -41,14 +43,15 @@ const SearchUtils = {
 
     /**
      * Checks if an item matches the query
-     * @param {String} key - The key of the item (context)
+     * @param {Array} path - The path to the item (context)
      * @param {Object} item - The item object (containing img, text, para)
      * @param {String} query - The normalized search query
      * @returns {Boolean}
      */
-    isMatch: function (key, item, query) {
-        // Check key (context)
-        if (this.fuzzyMatch(key, query)) return true;
+    isMatch: function (path, item, query) {
+        // Check path context (e.g., "hr employee default")
+        const pathString = path.join(' ');
+        if (this.fuzzyMatch(pathString, query)) return true;
 
         // Check image filename
         if (item.img && this.fuzzyMatch(item.img, query)) return true;
