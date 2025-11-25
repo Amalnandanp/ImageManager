@@ -12,17 +12,40 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasUnsavedChanges = false;
 
     // Load Data
-    fetch('data/image-data.json')
-        .then(response => response.json())
-        .then(data => {
-            jsonData = data;
-            jsonData = data;
-            renderCardView(data);
-            renderSidebar(data);
-        })
-        .catch(error => {
-            contentContainer.innerHTML = `<div class="loading" style="color: #dc3545;">Error loading data: ${error.message}</div>`;
+    if (Config.get('useLocalJson')) {
+        DB.init().then(() => {
+            DB.getJsonFile().then(file => {
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        try {
+                            jsonData = JSON.parse(e.target.result);
+                            renderCardView(jsonData);
+                            renderSidebar(jsonData);
+                        } catch (err) {
+                            contentContainer.innerHTML = `<div class="loading" style="color: #dc3545;">Error parsing local JSON: ${err.message}</div>`;
+                        }
+                    };
+                    reader.readAsText(file);
+                } else {
+                    contentContainer.innerHTML = `<div class="loading" style="color: #dc3545;">Local JSON file configured but not found in DB. Please re-select in Settings.</div>`;
+                }
+            }).catch(err => {
+                contentContainer.innerHTML = `<div class="loading" style="color: #dc3545;">Error loading from DB: ${err.message}</div>`;
+            });
         });
+    } else {
+        fetch(Config.get('jsonUrl'))
+            .then(response => response.json())
+            .then(data => {
+                jsonData = data;
+                renderCardView(data);
+                renderSidebar(data);
+            })
+            .catch(error => {
+                contentContainer.innerHTML = `<div class="loading" style="color: #dc3545;">Error loading data: ${error.message}</div>`;
+            });
+    }
 
     // Edit Mode Toggle
     editModeToggle.addEventListener('change', (e) => {
@@ -146,7 +169,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const imgDiv = document.createElement('div');
         imgDiv.className = 'card-image';
         const img = document.createElement('img');
-        img.src = `img/${item.data.img}`;
+
+        if (Config.get('useLocalImages')) {
+            // Load from DB
+            DB.getImageFile(item.data.img).then(file => {
+                if (file) {
+                    img.src = URL.createObjectURL(file);
+                } else {
+                    // Fallback or show error placeholder
+                    img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%23eee"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999">Not Found</text></svg>';
+                }
+            });
+        } else {
+            img.src = `${Config.get('imageFolder')}${item.data.img}`;
+        }
+
         img.alt = item.data.img;
         img.onerror = () => { img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%23eee"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999">No Image</text></svg>'; };
         imgDiv.appendChild(img);
@@ -179,7 +216,18 @@ document.addEventListener('DOMContentLoaded', () => {
             fileInput.placeholder = 'Image Filename';
             fileInput.addEventListener('change', (e) => {
                 updateData(item.path, 'img', e.target.value);
-                img.src = `img/${e.target.value}`; // Update preview
+
+                if (Config.get('useLocalImages')) {
+                    DB.getImageFile(e.target.value).then(file => {
+                        if (file) {
+                            img.src = URL.createObjectURL(file);
+                        } else {
+                            img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%23eee"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999">Not Found</text></svg>';
+                        }
+                    });
+                } else {
+                    img.src = `${Config.get('imageFolder')}${e.target.value}`; // Update preview
+                }
             });
             contentDiv.appendChild(fileInput);
 

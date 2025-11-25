@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SVG Utility Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <style>
+        .settings-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .settings-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .settings-section:last-child {
+            border-bottom: none;
+        }
+
+        .settings-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .placeholder-text {
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <app-navbar page="settings"></app-navbar>
+    <div class="settings-container">
+        <h1 class="settings-title">Application Settings</h1>
+        <div class="settings-section">
+            <h2 class="section-title">General Preferences</h2>
+            <p class="placeholder-text">Configuration options coming soon...</p>
+        </div>
+        <div class="settings-section">
+            <h2 class="section-title">Data Configuration</h2>
+            <p style="margin-bottom: 15px; color: #666;">Configure the paths for your data sources. These settings are
+                saved in your browser.</p>
+            <form id="configForm">
+                <div class="control-group" style="background: none; border: none; padding: 0;">
+                    <div style="margin-bottom: 15px;">
+                        <label for="imageFolder"
+                            style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Image Folder
+                            URL:</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="imageFolder" class="edit-input" style="flex: 1; padding: 8px;"
+                                placeholder="e.g., img/">
+                            <button type="button" id="browseImgBtn" class="filter-btn"
+                                style="white-space: nowrap;">Browse Folder...</button>
+                        </div>
+                        <input type="file" id="imgFolderInput" webkitdirectory directory style="display: none;">
+                        <p style="font-size: 12px; color: #888; margin-top: 4px;">Path to the folder containing SVG
+                            images (relative or absolute).</p>
+                        <div id="localImgMsg"
+                            style="display: none; margin-top: 5px; padding: 8px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; font-size: 12px;">
+                            <strong>Success:</strong> Local images loaded into database.
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="jsonUrl"
+                            style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">JSON Data
+                            URL:</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="jsonUrl" class="edit-input" style="flex: 1; padding: 8px;"
+                                placeholder="e.g., data/image-data.json">
+                            <button type="button" id="browseBtn" class="filter-btn" style="white-space: nowrap;">Browse
+                                File...</button>
+                        </div>
+                        <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
+                        <p style="font-size: 12px; color: #888; margin-top: 4px;">URL to the JSON data file.</p>
+                        <div id="localJsonMsg"
+                            style="display: none; margin-top: 5px; padding: 8px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; font-size: 12px;">
+                            <strong>Success:</strong> Local JSON file saved to database.
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="submit" class="save-btn">Save Settings</button>
+                        <button type="button" id="resetBtn" class="filter-btn"
+                            style="background-color: #f8f9fa; color: #dc3545; border-color: #dc3545;">Reset to
+                            Defaults</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="settings-section">
+            <h2 class="section-title">About</h2>
+            <p>SVG Utility Tool v1.0.0</p>
+            <p style="font-size: 14px; color: #666; margin-top: 5px;">A tool for managing and visualizing SVG assets and
+                JSON data.</p>
+        </div>
+    </div>
+    <script src="js/navbar.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const form = document.getElementById('configForm');
+            const imageFolderInput = document.getElementById('imageFolder');
+            const jsonUrlInput = document.getElementById('jsonUrl');
+
+            const browseBtn = document.getElementById('browseBtn');
+            const jsonFileInput = document.getElementById('jsonFileInput');
+            const localJsonMsg = document.getElementById('localJsonMsg');
+
+            const browseImgBtn = document.getElementById('browseImgBtn');
+            const imgFolderInput = document.getElementById('imgFolderInput');
+            const localImgMsg = document.getElementById('localImgMsg');
+
+            const resetBtn = document.getElementById('resetBtn');
+
+            // Initialize DB
+            await DB.init();
+
+            // Load current settings
+            const settings = Config.load();
+            imageFolderInput.value = settings.imageFolder;
+            jsonUrlInput.value = settings.jsonUrl;
+
+            // Show success messages if using local data
+            if (settings.useLocalJson) {
+                localJsonMsg.style.display = 'block';
+                jsonUrlInput.disabled = true;
+                jsonUrlInput.value = 'Local File: ' + settings.jsonUrl.replace('local:', '');
+                localJsonMsg.innerHTML = `<strong>Success:</strong> Saved "${settings.jsonUrl.replace('local:', '')}" to database.`;
+            }
+            if (settings.useLocalImages) {
+                localImgMsg.style.display = 'block';
+                imageFolderInput.disabled = true;
+                localImgMsg.innerHTML = `<strong>Success:</strong> Local images loaded into database.`; // Can't easily show folder name
+            }
+
+            // Handle JSON Browse
+            browseBtn.addEventListener('click', () => {
+                jsonFileInput.click();
+            });
+
+            // Handle JSON File Selection
+            jsonFileInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    try {
+                        await DB.setJsonFile(file);
+                        jsonUrlInput.value = 'Local File: ' + file.name;
+                        jsonUrlInput.disabled = true;
+                        localJsonMsg.style.display = 'block';
+                        localJsonMsg.innerHTML = `<strong>Success:</strong> Saved "${file.name}" to database.`;
+
+                        // Update config immediately to mark as local
+                        const current = Config.load();
+                        Config.save({ ...current, useLocalJson: true, jsonUrl: 'local:' + file.name });
+                    } catch (err) {
+                        alert('Error saving file to database: ' + err);
+                    }
+                }
+            });
+
+            // Handle Image Folder Browse
+            browseImgBtn.addEventListener('click', () => {
+                imgFolderInput.click();
+            });
+
+            // Handle Image Folder Selection
+            imgFolderInput.addEventListener('change', async (e) => {
+                const files = e.target.files;
+                if (files && files.length > 0) {
+                    try {
+                        localImgMsg.style.display = 'block';
+                        localImgMsg.innerHTML = 'Loading images into database...';
+
+                        const count = await DB.setImageFiles(files);
+
+                        imageFolderInput.value = 'Local Folder';
+                        imageFolderInput.disabled = true;
+                        localImgMsg.innerHTML = `<strong>Success:</strong> Loaded ${count} images into database.`;
+
+                        // Update config immediately
+                        const current = Config.load();
+                        Config.save({ ...current, useLocalImages: true, imageFolder: 'Local Folder' });
+                    } catch (err) {
+                        alert('Error saving images to database: ' + err);
+                        localImgMsg.style.display = 'none';
+                    }
+                }
+            });
+
+            // Handle Save (Manual inputs)
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const current = Config.load();
+                const newSettings = {
+                    ...current,
+                    // Only update if not disabled (meaning manual input)
+                    imageFolder: imageFolderInput.disabled ? current.imageFolder : imageFolderInput.value.trim(),
+                    jsonUrl: jsonUrlInput.disabled ? current.jsonUrl : jsonUrlInput.value.trim(),
+                    // If manually editing, disable local flags
+                    useLocalJson: jsonUrlInput.disabled ? current.useLocalJson : false,
+                    useLocalImages: imageFolderInput.disabled ? current.useLocalImages : false
+                };
+
+                Config.save(newSettings);
+                alert('Settings saved successfully!');
+            });
+
+            // Handle Reset
+            resetBtn.addEventListener('click', async () => {
+                if (confirm('Are you sure you want to reset settings to defaults? This will clear local database data.')) {
+                    await DB.clear();
+                    const defaults = Config.reset();
+
+                    imageFolderInput.value = defaults.imageFolder;
+                    imageFolderInput.disabled = false;
+
+                    jsonUrlInput.value = defaults.jsonUrl;
+                    jsonUrlInput.disabled = false;
+
+                    localJsonMsg.style.display = 'none';
+                    localImgMsg.style.display = 'none';
+
+                    alert('Settings reset to defaults.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

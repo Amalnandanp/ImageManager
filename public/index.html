@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SVG Utility Tool</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
+    <app-navbar page="home"></app-navbar>
     <div class="container">
         <div class="main-content">
             <div class="header-container">
                 <h1 class="header-title">SVG Utility Tool</h1>
                 <div class="header-controls">
-                    <a href="json-viewer.html"
-                        style="text-decoration: none; color: #007acc; font-size: 14px; font-weight: bold; border: 1px solid #007acc; padding: 6px 12px; border-radius: 4px; margin-right: 10px;">JSON
-                        Viewer</a>
                     <div class="highlight-check">
                         <label for="mainCorrectDimensionCheck">Highlight Correct Dimensions</label>
                         <input type="checkbox" id="mainCorrectDimensionCheck" checked>
@@ -179,6 +178,9 @@
             </div>
         </div>
     </div>
+    <script src="js/config.js"></script>
+    <script src="js/db.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 </html>

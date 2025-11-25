@@ -1,4 +1,5 @@
 // CONFIGURATION: Set the range for missing image detection
+// Requires: config.js, db.js
 const BG_START = 1;    // Start number (bg1)
 let BG_END = 1;        // Will be auto-detected from actual files
 
@@ -54,11 +55,11 @@ const guideSettings = {
 
 // Function to automatically discover all SVG files in the img folder
 async function discoverImageFiles() {
-    const imgFolder = './img/';
+    const imgFolder = Config.get('imageFolder');
 
     // Try to load the file list from a generated JSON file first
     try {
-        const response = await fetch('./img/file-list.json');
+        const response = await fetch(`${imgFolder}file-list.json`);
         if (response.ok) {
             const data = await response.json();
             console.log('✅ Loaded file list from file-list.json');
@@ -613,7 +614,7 @@ function addEstimatedVisualCenter(img, overlay) {
 function loadImageUsageData() {
     return new Promise((resolve, reject) => {
         // Try fetch first (works with live server)
-        fetch('./data/image-data.json')
+        fetch(Config.get('jsonUrl'))
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -639,59 +640,94 @@ function loadImageUsageData() {
     });
 }
 
-// Alternative method to load JSON (works with file:// protocol)
+// Alternative method to load JSON (works with file:// protocol or local DB)
 function loadJSONViaScript(resolve) {
-    // Create a script element to load JSON as JSONP
-    const script = document.createElement('script');
-    script.src = './data/image-data.json';
-    script.onerror = function () {
-        console.error('Could not load JSON via script tag either');
-        console.log('Please use a live server or manually embed the JSON data');
-        showJSONLoadError();
-        if (resolve) resolve(); // Resolve anyway to allow app to continue
-    };
+    // Check if using local JSON file
+    if (Config.get('useLocalJson')) {
+        DB.getJsonFile().then(file => {
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        console.log('✅ Loaded JSON data from Local DB');
+                        imageUsageData = processImageUsage(data);
+                        refreshImageGrid();
+                        showJSONLoadSuccess();
+                        if (resolve) resolve(data);
+                    } catch (err) {
+                        console.error('Error parsing local JSON:', err);
+                        fallbackToFetch();
+                    }
+                };
+                reader.readAsText(file);
+            } else {
+                console.warn('Local JSON file configured but not found in DB');
+                fallbackToFetch();
+            }
+        }).catch(err => {
+            console.error('Error loading from DB:', err);
+            fallbackToFetch();
+        });
+        return;
+    }
 
-    // Try to read as text using XMLHttpRequest (sometimes works)
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', './data/image-data.json', true);
-    xhr.overrideMimeType('application/json');
+    fallbackToFetch();
 
-    xhr.onload = function () {
-        if (xhr.status === 200 || xhr.status === 0) { // 0 for file:// protocol
-            try {
-                const data = JSON.parse(xhr.responseText);
-                console.log('✅ Loaded JSON data successfully via XHR'); // Debug log
-                imageUsageData = processImageUsage(data);
-                console.log('📊 Processed', Object.keys(imageUsageData).length, 'images with usage data'); // Debug log
-                refreshImageGrid();
-                // displayUnusedImages(); // Removed to avoid race condition
-                showJSONLoadSuccess();
-            } catch (e) {
-                console.error('Error parsing JSON:', e);
+    function fallbackToFetch() {
+        // Create a script element to load JSON as JSONP
+        const script = document.createElement('script');
+        script.src = Config.get('jsonUrl');
+        script.onerror = function () {
+            console.error('Could not load JSON via script tag either');
+            console.log('Please use a live server or manually embed the JSON data');
+            // Try XHR as last resort
+            tryXHR();
+        };
+        document.body.appendChild(script);
+    }
+
+    // Function to try loading via XMLHttpRequest
+    function tryXHR() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', Config.get('jsonUrl'), true);
+        xhr.overrideMimeType('application/json');
+
+        xhr.onload = function () {
+            if (xhr.status === 200 || xhr.status === 0) { // 0 for file:// protocol
+                try {
+                    const data = JSON.parse(xhr.responseText);
+                    console.log('✅ Loaded JSON data successfully via XHR'); // Debug log
+                    imageUsageData = processImageUsage(data);
+                    console.log('📊 Processed', Object.keys(imageUsageData).length, 'images with usage data'); // Debug log
+                    refreshImageGrid();
+                    showJSONLoadSuccess();
+                } catch (e) {
+                    console.error('Error parsing JSON from XHR:', e);
+                    showJSONLoadError();
+                }
+            } else {
+                console.error('XHR failed with status:', xhr.status);
                 showJSONLoadError();
             }
-        } else {
-            console.error('XHR failed with status:', xhr.status);
+            if (resolve) resolve();
+        };
+
+        xhr.onerror = function () {
+            console.error('XHR request failed');
             showJSONLoadError();
+            if (resolve) resolve();
+        };
+
+        try {
+            xhr.send();
+        } catch (e) {
+            console.error('Could not send XHR request:', e);
+            showJSONLoadError();
+            if (resolve) resolve();
         }
-        if (resolve) resolve();
-    };
-
-    xhr.onerror = function () {
-        console.error('XHR request failed');
-        showJSONLoadError();
-        if (resolve) resolve();
-    };
-
-    try {
-        xhr.send();
-    } catch (e) {
-        console.error('Could not send XHR request:', e);
-        showJSONLoadError();
-        if (resolve) resolve();
     }
 }
-
 // Show success message when JSON is loaded
 function showJSONLoadSuccess() {
     const filterBtn = document.getElementById('filterDropdownBtn');
