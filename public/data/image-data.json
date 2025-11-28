@@ -29,7 +29,7 @@
     "challanGenerationESI": {
       "challan": {
         "img": "bg37.svg",
-        "text": "Oops, ESI challan unavailable!",
+        "text": "Oops! ESI challan unavailable",
         "para": "It seems like the salary for the selected month hasn't been processed. Once it's done, you'll be able to generate the ESI challans here."
       },
       "returns": {
@@ -41,7 +41,7 @@
     "challanGenerationPF": {
       "challan": {
         "img": "bg37.svg",
-        "text": "Oops, PF challan unavailable!",
+        "text": "Oops! PF challan unavailable",
         "para": "It looks like the salary for the selected month hasn't been processed. Once it's done, you'll be able to generate the PF challans here."
       },
       "returns": {
@@ -72,7 +72,7 @@
     "error": {
       "default": {
         "img": "bg38.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It looks like there are currently no error items. Check back later for updates."
       }
     },
@@ -139,7 +139,7 @@
     "challan": {
       "default": {
         "img": "bg37.svg",
-        "text": "Oops, TDS challan unavailable!",
+        "text": "Oops! TDS challan unavailable",
         "para": "It seems like the salary for the selected financial year hasn't been processed. Once it's done, you'll be able to add the TDS challans details here."
       }
     },
@@ -223,12 +223,12 @@
     "sidebarInvestmentSubmitted": {
       "default": {
         "img": "bg10.svg",
-        "text": "Oops, no data found!",
+        "text": "Oops! no data found",
         "para": "It seems no employees are present without submitting an investment declaration."
       },
       "notSubmitted": {
         "img": "bg10.svg",
-        "text": "Oops, no data found!",
+        "text": "Oops! no data found",
         "para": "It seems no employees submitted the investment declaration."
       }
     },
@@ -346,49 +346,49 @@
     "assetReport": {
       "default": {
         "img": "bg24.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "attendanceReports": {
       "default": {
         "img": "bg46.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "employeeReports": {
       "default": {
         "img": "bg2.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "engageReports": {
       "default": {
         "img": "bg24.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "expenseReports": {
       "default": {
         "img": "bg30.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "leaveReports": {
       "default": {
         "img": "bg7.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "payrollReports": {
       "default": {
         "img": "bg25.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
@@ -491,14 +491,14 @@
     "challanSettingsESI": {
       "default": {
         "img": "bg37.svg",
-        "text": "Oops, ESI challan groups unavailable!",
+        "text": "Oops! ESI challan groups unavailable",
         "para": "It seems no ESI challan groups have been created yet. To create one, click the 'Add Challan' button, and it will appear here once completed."
       }
     },
     "challanSettingsPF": {
       "default": {
         "img": "bg37.svg",
-        "text": "Oops, PF challan groups unavailable!",
+        "text": "Oops! PF challan groups unavailable",
         "para": "It seems no PF challan groups have been created yet. To create one, click the 'Add Challan' button, and it will appear here once completed."
       }
     },
@@ -877,7 +877,7 @@
       "default": {
         "img": "bg24.svg",
         "text": "Asset overview!",
-        "para": "View and manage all your assigned and returned assets. Keep track of assets and their status with ease!."
+        "para": "View and manage all your assigned and returned assets. Keep track of your assets and their status with ease."
       }
     },
     "widgetmyAttendanceInfoDonut": {
@@ -983,8 +983,8 @@
     "sidebarExtraPaymentSetup": {
       "default": {
         "img": "bg64.svg",
-        "text": "It looks like there are no Extra Payment requests to make!",
-        "para": "Extra payments will appear here once your additional work hours are processed."
+        "text": "No extra payments yet!",
+        "para": "Extra payment entries will appear here once they are generated."
       }
     },
     "sidebarFBPDeclarationSetup": {
@@ -1038,7 +1038,7 @@
     "sidebarRaiseRequest": {
       "default": {
         "img": "bg52.svg",
-        "text": "Oops, No Results Found!",
+        "text": "Oops! No Results Found",
         "para": "It seems no requests match your search criteria. Please try a valid search."
       }
     }
@@ -1121,18 +1121,18 @@
     "inbox": {
       "inboxPendingList": {
         "img": "bg49.svg",
-        "text": "Stay tuned for new messages.",
-        "para": "Fresh messages will soon show up here. Stay tuned."
+        "text": "Stay tuned for new items!",
+        "para": "Fresh items will appear here soon."
       },
       "inboxArchivedList": {
         "img": "bg49.svg",
-        "text": "Archive is waiting for action.",
-        "para": "There are no messages in the archive yet. Once action is taken, they'll appear here."
+        "text": "Archive is Waiting for Action",
+        "para": "There are no messages in the archive yet. Once action is taken, they’ll appear here."
       },
       "inboxViewDetails": {
         "img": "bg8.svg",
-        "text": "Hmm, It's Quiet Here",
-        "para": "Select a message to view its details and take action."
+        "text": "Hmm, It’s Quiet Here",
+        "para": "Select an item to view its details and take action."
       }
     },
     "myTeamDashboard": {
@@ -1205,7 +1205,7 @@
     "employeeRouteMapView": {
       "default": {
         "img": "bg2.svg",
-        "text": "Oops, no results found!",
+        "text": "Oops! no results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
