@@ -79,7 +79,7 @@
     "expenseManagement": {
       "default": {
         "img": "bg5.svg",
-        "text": "Hey! managing expenses is a breeze!",
+        "text": "Hey! managing expenses is a breeze",
         "para": "Expense Reports will appear here once they're submitted and approved. Stay tuned to manage them with ease!."
       }
     },
