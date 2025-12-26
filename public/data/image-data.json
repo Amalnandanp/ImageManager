@@ -87,7 +87,7 @@
       "default": {
         "img": "bg81.svg",
         "text": "Ready for final settlement?",
-        "para": "It looks like final settlements haven't been processed yet. It's time to handle those employee departures."
+        "para": "It looks like final settlements haven’t been processed yet. It’s time to handle those employee departures."
       }
     },
     "finalSettlementGratuity": {
@@ -235,7 +235,7 @@
     "resetPassword": {
       "default": {
         "img": "bg47.svg",
-        "text": "Manage Password Resets",
+        "text": "Manage password resets",
         "para": "Find and select employees to send new passwords or regenerate \nexisting ones as needed."
       }
     },
@@ -278,7 +278,7 @@
       "default": {
         "img": "bg15.svg",
         "text": "Ready to assign geo-locations?",
-        "para": "Assign geo-locations to employees for precise attendance tracking. Click the 'Assign Geo-Location' button to select and assign locations, or use the 'Import' option to add multiple employees' locations at once."
+        "para": "Assign geo-locations to employees for precise attendance tracking. Click the ‘Assign Geo-Location’ button to select and assign locations, or use the ‘Import’ option to add multiple employee’s locations at once."
       }
     },
     "geoLocation": {
@@ -407,7 +407,7 @@
       },
       "notAssigned": {
         "img": "bg16.svg",
-        "text": "Oops! No employees awaiting salary assignment",
+        "text": "Oops! No employees are awaiting salary assignment",
         "para": "Add new employees to start assigning salaries."
       }
     },
@@ -422,7 +422,7 @@
       "default": {
         "img": "bg16.svg",
         "text": "Oops! No revisions in sight",
-        "para": "It looks like there are currently no salary revisions available. First, assign a salary structure, and then you can revise salaries for existing employees and view their revision history here."
+        "para": "It looks like there are currently no salary revisions available. First, assign a salary structure, and then you can revise salaries for existing employees and Oops! no revisions in sight."
       }
     },
     "scheduledReports": {
@@ -841,7 +841,7 @@
     "advance": {
       "default": {
         "img": "bg39.svg",
-        "text": "Advance Manager",
+        "text": "Advance manager",
         "para": "You can add new advances and keep your records up to date."
       }
     },
@@ -1080,7 +1080,7 @@
         "text": "No upcoming holidays scheduled."
       },
       "widgetTimeOff": {
-        "img": "bg8.png",
+        "img": "bg56.svg",
         "text": "No team time-off records to display at the moment."
       },
       "widgetQuickLinks": {
@@ -1092,7 +1092,7 @@
         "text": "No external links available."
       },
       "widgetCelebration": {
-        "img": "bg8.png",
+        "img": "bg80.svg",
         "text": "No celebrations lined up today!"
       }
     },
@@ -1324,8 +1324,8 @@
     "shiftMapping": {
       "default": {
         "img": "bg9.svg",
-        "text": "Shift scheduling pending",
-        "para": "Set up or upload shifts for employees to manage their schedules efficiently. Use the 'Add Shift' button to assign shifts to individual employees or upload shifts in bulk for streamlined scheduling."
+        "text": "Shift scheduling is pending",
+        "para": "Use the ‘Add Shift’ button to assign shifts to individual employees or upload shifts in bulk for streamlined scheduling."
       }
     },
     "runPayrollAlert": {
