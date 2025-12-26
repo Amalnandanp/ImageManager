@@ -11,7 +11,7 @@
       "default": {
         "img": "bg23.svg",
         "text": "Start building your ideal attendance policy!",
-        "para": "The attendance settings are waiting to be configured! Check back here after completing the relevant configurations."
+        "para": "The attendance settings are waiting to be configured. Check back here after completing the required configurations."
       },
       "widgetOnTime": {
         "img": "bg58.svg"
@@ -29,8 +29,8 @@
     "challanGenerationESI": {
       "challan": {
         "img": "bg37.svg",
-        "text": "Oops! ESI challan unavailable",
-        "para": "It seems like the salary for the selected month hasn't been processed. Once it's done, you'll be able to generate the ESI challans here."
+        "text": "Oops! ESI challan is unavailable",
+        "para": "It seems like the salary for the selected month hasn't been processed. Once it’s done, you’ll be able to generate ESI challans here."
       },
       "returns": {
         "img": "bg37.svg",
@@ -41,8 +41,8 @@
     "challanGenerationPF": {
       "challan": {
         "img": "bg37.svg",
-        "text": "Oops! PF challan unavailable",
-        "para": "It looks like the salary for the selected month hasn't been processed. Once it's done, you'll be able to generate the PF challans here."
+        "text": "Oops! PF challan is unavailable",
+        "para": "It looks like the salary for the selected month hasn't been processed. Once it’s done, you’ll be able to generate PF challans here."
       },
       "returns": {
         "img": "bg37.svg",
@@ -72,15 +72,15 @@
     "error": {
       "default": {
         "img": "bg38.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It looks like there are currently no error items. Check back later for updates."
       }
     },
     "expenseManagement": {
       "default": {
         "img": "bg5.svg",
-        "text": "Hey! managing expenses is a breeze",
-        "para": "Expense Reports will appear here once they're submitted and approved. Stay tuned to manage them with ease!."
+        "text": "Hey! Managing expenses is a breeze",
+        "para": "Expense Reports will appear here once they're submitted and approved. Stay tuned to manage them with ease."
       }
     },
     "finalSettlement": {
@@ -93,26 +93,26 @@
     "finalSettlementGratuity": {
       "gratuity": {
         "img": "bg51.svg",
-        "text": "Gratuity Is Not Applicable!",
+        "text": "Gratuity is not applicable!",
         "para": "This employee is not eligible for gratuity as per the company policy."
       },
       "leave": {
         "img": "bg51.svg",
-        "text": "Leave Encashment Is not Applicable!",
+        "text": "Leave encashment is not applicable!",
         "para": "This employee is not eligible for leave encashment as per the company policy."
       }
     },
     "finalSettlementInvestmentDeclaration": {
       "default": {
         "img": "bg50.svg",
-        "text": "Investment Declaration Not Added!",
+        "text": "Investment declaration not added!",
         "para": "There are no investment declarations added for this employee. Click the below button to include the relevant declaration details for this final settlement."
       }
     },
     "finalSettlementPendingRequests": {
       "default": {
         "img": "bg65.svg",
-        "text": "Spotless! no pending requests",
+        "text": "Spotless! No pending requests",
         "para": "There are no pending requests awaiting your action. You can proceed to the next step of the final settlement process."
       }
     },
@@ -125,7 +125,7 @@
     "finalSettlementReimbursement": {
       "default": {
         "img": "bg13.svg",
-        "text": "Spotless! no reimbursement requests",
+        "text": "Spotless! No reimbursement requests",
         "para": "There are no reimbursements claimed by this employee. You can proceed to the next step of the final settlement process."
       }
     },
@@ -139,7 +139,7 @@
     "challan": {
       "default": {
         "img": "bg37.svg",
-        "text": "Oops! TDS challan unavailable",
+        "text": "Oops! TDS challan is unavailable",
         "para": "It seems like the salary for the selected financial year hasn't been processed. Once it's done, you'll be able to add the TDS challans details here."
       }
     },
@@ -172,22 +172,22 @@
       },
       "inUse": {
         "img": "bg1.svg",
-        "text": "All items are idle!",
+        "text": "All items are idle",
         "para": "It seems there are currently no items marked as in use. Update the inventory list or check back later."
       },
       "inStock": {
         "img": "bg6.svg",
-        "text": "Oops! No items in stock!",
+        "text": "Oops! No items in stock",
         "para": "It looks like there are no available items at the moment. Restock or check back later."
       },
       "inRepair": {
         "img": "bg1.svg",
-        "text": "Bingo! Everything is functional!",
+        "text": "Bingo! Everything is functional",
         "para": "There are no items in repair at the moment. Please check back later."
       },
       "missing": {
         "img": "bg4.svg",
-        "text": "Hooray! Everything is accounted for!",
+        "text": "Hooray! Everything is accounted for",
         "para": "It looks like there are no missing items at the moment. Please check back later."
       },
       "damage": {
@@ -205,13 +205,13 @@
       "default": {
         "img": "bg3.svg",
         "text": "Assets awaiting assignment!",
-        "para": "Assigned assets will appear here once assets are allocated to employees."
+        "para": "Assigned assets will appear here once they are allocated to employees."
       }
     },
     "investmentDeclaration": {
       "proposedInvestment": {
         "img": "bg20.svg",
-        "text": "Oops! No proposed investments yet!",
+        "text": "Oops! No proposed investments yet",
         "para": "Details of your salary structure will be available here once it is assigned.Stay tuned!."
       },
       "confirmedInvestment": {
@@ -223,27 +223,27 @@
     "sidebarInvestmentSubmitted": {
       "default": {
         "img": "bg10.svg",
-        "text": "Oops! no data found",
+        "text": "Oops! No data found",
         "para": "It seems no employees are present without submitting an investment declaration."
       },
       "notSubmitted": {
         "img": "bg10.svg",
-        "text": "Oops! no data found",
+        "text": "Oops! No data found",
         "para": "It seems no employees submitted the investment declaration."
       }
     },
     "resetPassword": {
       "default": {
         "img": "bg47.svg",
-        "text": "Let's get started!",
-        "para": "Add employees to start sending invites and generating their passwords."
+        "text": "Manage Password Resets",
+        "para": "Find and select employees to send new passwords or regenerate \nexisting ones as needed."
       }
     },
     "inviteEmployeeReset": {
       "default": {
         "img": "bg47.svg",
         "text": "Let's get started!",
-        "para": "Add employees to start sending invites and generating their passwords."
+        "para": "Add employees to send invites and generate login credentials."
       }
     },
     "leaveBalance": {
@@ -270,8 +270,8 @@
     "loanAndAdvance": {
       "default": {
         "img": "bg16.svg",
-        "text": "Oops! no loans have been processed yet.",
-        "para": "Loan details will be available here once it is processed. Check back later for updates."
+        "text": "Oops! No loans have been processed yet.",
+        "para": "Loan details will be available here once they are processed. Check back later for updates."
       }
     },
     "assignGeoLocation": {
@@ -296,7 +296,7 @@
       },
       "pending": {
         "img": "bg10.svg",
-        "text": "Spotless! no pending requests",
+        "text": "Spotless! No pending requests",
         "para": "Enjoy a moment of peace. There are no pending requests awaiting action."
       },
       "rejected": {
@@ -346,49 +346,49 @@
     "assetReport": {
       "default": {
         "img": "bg24.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "attendanceReports": {
       "default": {
         "img": "bg46.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "employeeReports": {
       "default": {
         "img": "bg2.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "engageReports": {
       "default": {
         "img": "bg24.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "expenseReports": {
       "default": {
         "img": "bg30.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "leaveReports": {
       "default": {
         "img": "bg7.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
     "payrollReports": {
       "default": {
         "img": "bg25.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
@@ -407,7 +407,7 @@
       },
       "notAssigned": {
         "img": "bg16.svg",
-        "text": "Oops! no employees awaiting salary assignment",
+        "text": "Oops! No employees awaiting salary assignment",
         "para": "Add new employees to start assigning salaries."
       }
     },
@@ -421,7 +421,7 @@
     "salaryRevision": {
       "default": {
         "img": "bg16.svg",
-        "text": "Oops! no revisions in sight",
+        "text": "Oops! No revisions in sight",
         "para": "It looks like there are currently no salary revisions available. First, assign a salary structure, and then you can revise salaries for existing employees and view their revision history here."
       }
     },
@@ -701,7 +701,7 @@
     "reasonList": {
       "default": {
         "img": "bg31.svg",
-        "text": "Smooth Exits!",
+        "text": "Smooth exits!",
         "para": "Ensure smooth transitions for departing employees."
       }
     },
@@ -743,14 +743,14 @@
     "statutory": {
       "default": {
         "img": "bg44.svg",
-        "text": "It Seems Statutory Settings Need Your Attention.",
+        "text": "It seems statutory settings need your attention.",
         "para": "Select the financial year to define and lock in the company's statutory settings for the year."
       }
     },
     "companyStatutory": {
       "default": {
         "img": "bg28.svg",
-        "text": "It Seems Statutory Settings Need Your Attention.",
+        "text": "It seems statutory settings need your attention.",
         "para": "Select the financial year to define and lock in the company's statutory settings for the year."
       }
     },
@@ -778,28 +778,28 @@
     "weeklyOff": {
       "default": {
         "img": "bg36.svg",
-        "text": "Plan Time Off!",
+        "text": "Plan time off!",
         "para": "Manage weekly offs for your team and keep everyone refreshed and balanced. Create and define your week-offs by clicking 'Add Week Off'."
       }
     },
     "codeSeries": {
       "default": {
         "img": "bg70.svg",
-        "text": "Code Series Awaiting Setup!",
+        "text": "Code series awaiting setup!",
         "para": "Looks like you haven't created any code series yet. Click 'ADD CODE SERIES' to generate codes for your employees."
       }
     },
     "configWidget": {
       "default": {
         "img": "bg44.svg",
-        "text": "Oops! No Companies yet",
+        "text": "Oops! No companies yet",
         "para": "Companies will appear here once they are created. You can then enable or disable the widgets as per your preference."
       }
     },
     "configQuickLink": {
       "default": {
         "img": "bg44.svg",
-        "text": "Oops! No Companies yet",
+        "text": "Oops! No companies yet",
         "para": "Companies will appear here once they are created. You can then enable or disable quick links as per your preference."
       }
     },
@@ -810,7 +810,7 @@
         "para": "External links aren't added yet. Click 'ADD EXTERNAL LINKS' to access third-party websites or software."
       }
     },
-    "configVisiblityCriteria": {
+    "configVisibilityCriteria": {
       "default": {
         "img": "bg70.svg",
         "text": "",
@@ -834,15 +834,15 @@
     "documentRepository": {
       "default": {
         "img": "bg17.svg",
-        "text": "Library is Awaiting Upload",
+        "text": "Library is awaiting upload",
         "para": "Currently, there are no documents in the library. Files shared to you by authorized users will be listed here."
       }
     },
     "advance": {
       "default": {
         "img": "bg39.svg",
-        "text": "Advance manager",
-        "para": "Ready to add new advances and keep the table updated."
+        "text": "Advance Manager",
+        "para": "You can add new advances and keep your records up to date."
       }
     },
     "expenseReport": {
@@ -863,20 +863,20 @@
       "default": {
         "img": "bg27.svg",
         "text": "Holiday policy not assigned.",
-        "para": "It looks like holiday policy is not assigned. Holiday calendar will be available here once it is assigned.Stay tuned!."
+        "para": "It looks like the holiday policy is not assigned. The holiday calendar will be available here once it is assigned. Stay tuned!"
       }
     },
     "liveLocation": {
       "default": {
         "img": "bg15.svg",
-        "text": "Real-time locations at your fingertips",
-        "para": "To view live locations, ensure that employees have enabled location tracking in their mobile app settings. Once active, their locations will appear here."
+        "text": "Tracking yet to begin!",
+        "para": " Live locations will appear once real-time tracking is enabled and attendance is marked via mobile."
       }
     },
     "myAsset": {
       "default": {
         "img": "bg24.svg",
-        "text": "Asset overview!",
+        "text": "Asset overview",
         "para": "View and manage all your assigned and returned assets. Keep track of your assets and their status with ease."
       }
     },
@@ -889,56 +889,56 @@
     "myForm16": {
       "default": {
         "img": "bg31.svg",
-        "text": "Oops! form 16 not found.",
-        "para": "It looks like Form 16 is not yet generated for the chosen year. Select a different year or check back later!."
+        "text": "Oops! Form 16 not found.",
+        "para": "It looks like Form 16 has not yet been generated for the selected year. Select a different year or check back later."
       }
     },
     "myConfirmedDeclaration": {
       "default": {
         "img": "bg20.svg",
         "text": "Explore approved investment details!",
-        "para": "It seems there are no approved confirmed investment declarations yet. Once your submissions are approved, they will appear here for your review."
+        "para": "It seems there are no approved investment declarations yet. Once your submissions are approved, they will appear here for review."
       }
     },
     "myProposedDeclaration": {
       "default": {
         "img": "bg20.svg",
-        "text": "Explore approved investment details!",
-        "para": "It seems there are no proposed investment declarations added yet. Once its declared, they will appear here for your review."
+        "text": "Explore proposed investment details!",
+        "para": "It seems there are no proposed investment declarations yet. Once they are declared, they will appear here for your review."
       }
     },
     "mySalaryStructure": {
       "default": {
         "img": "bg16.svg",
-        "text": "Salary structure not assigned.",
-        "para": "Details of your salary structure will be available here once it is assigned. Stay tuned!."
+        "text": "Salary structure not assigned",
+        "para": "Your salary structure details will be available here once it is assigned."
       }
     },
     "myPayslip": {
       "default": {
         "img": "bg14.svg",
-        "text": "Oops! you're not in the payroll this time.",
+        "text": "Oops! You are not included in the payroll for this period.",
         "para": "Payslips will appear here once you are included in payroll processing."
       }
     },
     "myTaxslip": {
       "default": {
         "img": "bg25.svg",
-        "text": "Tax slips will be available soon!",
-        "para": "View and manage your tax slips with ease. Keep track of your tax information and compliance effortlessly!"
+        "text": "Tax slips will be available soon.",
+        "para": "View and manage your tax slips with ease. Keep track of your tax information and compliance effortlessly."
       }
     },
     "myLeaveBalance": {
       "widgetYourLeaveBalance": {
-        "img": "",
+        "img": "bg46.svg",
         "text": "Leave balances will appear here once they're set up and assigned."
       },
       "widgetTimeOffTrend": {
-        "img": "",
+        "img": "bg46.svg",
         "text": "Time off trend data is not available for this year."
       },
       "widgetUpcomingLeaves": {
-        "img": "",
+        "img": "bg46.svg",
         "text": "Planned leave appears here once approved.",
         "para": ""
       }
@@ -947,7 +947,7 @@
       "default": {
         "img": "bg48.svg",
         "text": "Your letterbox is quiet",
-        "para": "Currently no letters available for download. New letters will be added as they are published."
+        "para": "Currently, no letters are available for download. New letters will be added as they are published."
       }
     },
     "myLoan": {
@@ -1004,14 +1004,14 @@
     "setupReimbursementCategory": {
       "default": {
         "img": "bg13.svg",
-        "text": "Reimbursement Components Not Available!",
+        "text": "Reimbursement components not available!",
         "para": "Reimbursement components as per your salary structure will be listed here once it is configured."
       }
     },
     "request": {
       "default": {
         "img": "bg48.svg",
-        "text": "Let's begin! raise new requests and keep track of them effortlessly.",
+        "text": "Let's begin! Raise new requests and keep track of them effortlessly.",
         "para": "Get started by raising a request. Click 'New Request' to begin the process and manage all your requests seamlessly as they are published."
       },
       "active": {
@@ -1021,7 +1021,7 @@
       },
       "pending": {
         "img": "bg48.svg",
-        "text": "Spotless! no pending requests.",
+        "text": "Spotless! No pending requests.",
         "para": "Enjoy a moment of peace. There are no pending request in your list."
       },
       "rejected": {
@@ -1038,7 +1038,7 @@
     "sidebarRaiseRequest": {
       "default": {
         "img": "bg52.svg",
-        "text": "Oops! No Results Found",
+        "text": "Oops! No results found",
         "para": "It seems no requests match your search criteria. Please try a valid search."
       }
     }
@@ -1047,8 +1047,8 @@
     "apps": {
       "default": {
         "img": "bg67.svg",
-        "text": "No Apps Configured Yet!",
-        "para": "Start adding and configuring applications to make them available for employees."
+        "text": "No apps configured yet!",
+        "para": "Start adding and configuring applications to make them available to employees."
       }
     },
     "employeeDirectory": {
@@ -1080,7 +1080,7 @@
         "text": "No upcoming holidays scheduled."
       },
       "widgetTimeOff": {
-        "img": "bg56.svg",
+        "img": "bg8.png",
         "text": "No team time-off records to display at the moment."
       },
       "widgetQuickLinks": {
@@ -1092,7 +1092,7 @@
         "text": "No external links available."
       },
       "widgetCelebration": {
-        "img": "bg80.svg",
+        "img": "bg8.png",
         "text": "No celebrations lined up today!"
       }
     },
@@ -1126,12 +1126,12 @@
       },
       "inboxArchivedList": {
         "img": "bg49.svg",
-        "text": "Archive is Waiting for Action",
+        "text": "Archive is waiting for action",
         "para": "There are no messages in the archive yet. Once action is taken, they’ll appear here."
       },
       "inboxViewDetails": {
         "img": "bg8.svg",
-        "text": "Hmm, It’s Quiet Here",
+        "text": "Hmm, It’s quiet here",
         "para": "Select an item to view its details and take action."
       }
     },
@@ -1158,32 +1158,32 @@
       },
       "sidebarLeaderBoard": {
         "img": "bg18.svg",
-        "text": "No Rankings Yet!",
+        "text": "No rankings yet!",
         "para": "Track team attendance and performance to get ranked here."
       },
       "sidebarOnDuty": {
         "img": "bg61.svg",
-        "text": "No On-Duty Today!",
+        "text": "No on-duty today!",
         "para": "Everyone is working from their regular location."
       },
       "sidebarWFH": {
         "img": "bg66.svg",
-        "text": "Everyone's In!",
+        "text": "Everyone's in!",
         "para": "No employees are currently working from home."
       },
       "sidebarLate": {
         "img": "bg9.svg",
-        "text": "No Late Arrivals!",
+        "text": "No late arrivals!",
         "para": "All team members checked in on time."
       },
       "sidebarOnLeave": {
         "img": "bg60.svg",
-        "text": "Everyone is Present!",
+        "text": "Everyone is present!",
         "para": "No team members are on leave today."
       },
       "sidebarNotIn": {
         "img": "bg56.svg",
-        "text": "All Checked In!",
+        "text": "All checked in!",
         "para": "Everyone has marked attendance for today."
       }
     },
@@ -1205,7 +1205,7 @@
     "employeeRouteMapView": {
       "default": {
         "img": "bg2.svg",
-        "text": "Oops! no results found",
+        "text": "Oops! No results found",
         "para": "It seems no results match your search criteria. Please adjust or apply different filters."
       }
     },
@@ -1247,7 +1247,7 @@
       "default": {
         "img": "bg76.svg",
         "text": "Personal details will appear here soon",
-        "para": "CThe employee's personal information will be displayed once they are updated."
+        "para": "The employee's personal information will be displayed once they are updated."
       }
     },
     "profileFamily": {
@@ -1293,17 +1293,17 @@
     "profileGeoLocation": {
       "default": {
         "img": "bg15.svg",
-        "text": "Oops! geo location not assigned.",
+        "text": "Oops! Geo location not assigned.",
         "para": "Geo location is not assigned at the moment. Once it's assigned, the system will allow you to mark attendance within the premises of the assigned geo location."
       },
       "withPermission": {
         "img": "bg15.svg",
-        "text": "Oops! geo location not assigned.",
+        "text": "Oops! Geo location not assigned.",
         "para": "Geo location is not yet assigned to this employee. You can define geo location and then assign them to the employee. Once assigned, employee can mark attendance inside the premises of the assigned geo location."
       },
       "withoutPermission": {
         "img": "bg15.svg",
-        "text": "Oops! geo location not assigned.",
+        "text": "Oops! Geo location not assigned.",
         "para": "Geo location is not yet assigned to this employee. Currently you do not have rights to assign geo location to employees. Please contact admin for more details."
       }
     },
@@ -1331,132 +1331,132 @@
     "runPayrollAlert": {
       "Salaries not processed last month": {
         "img": "bg53.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "Salary structures have been assigned for all employees in this pay cycle"
       },
       "Attendance not processed last month": {
         "img": "bg53.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "Salaries were processed successfully last month for all employees in this pay cycle."
       },
       "Attendance policy not mapped": {
         "img": "bg53.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "Attendance policies have been assigned for all employees in this pay cycle."
       },
       "Attendance processed previous month": {
         "img": "bg53.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "Attendance for the previous month has been processed for all employees."
       }
     },
     "runPayrollReminder": {
       "Bank details missing": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no missing bank details for any employee."
       },
       "Pan card details missing": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no missing PAN details for any employee."
       },
       "Pending proposed investment declaration": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no proposed investment declarations pending for approval."
       },
       "Pending confirmed investment declaration": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no confirmed investment declarations pending for approval."
       },
       "Pending FBP declaration": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no FBP declarations pending for approval."
       },
       "Overtime component missing": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "Overtime component is mapped correctly for employees who have overtime payment this month."
       },
       "Pending salary revision approval": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no salary revisions pending for approval."
       }
     },
     "attendanceDashboardAlert": {
       "Attendance policy not mapped": {
         "img": "bg53.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "Attendance policies have been assigned for all employees in this attendance cycle."
       },
       "Attendance unprocessed last month": {
         "img": "bg53.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "Attendance for the previous month has been processed for all employees."
       }
     },
     "attendanceDashboardReminder": {
       "Pending On duty request": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no On Duty Requests pending for approval."
       },
       "Pending Leave Request": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no Leave Requests pending for approval."
       },
       "Pending regularization request": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no Regularization Requests pending for approval."
       },
       "Pending WFH request": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "There are no Work from home requests pending for approval."
       },
       "Employees shift not mapped": {
         "img": "bg54.svg",
-        "text": "No Action Needed!",
+        "text": "No action needed!",
         "para": "All employees have their shifts mapped correctly."
       }
     },
     "myTeamDashboard": {
       "Joining This Month": {
         "img": "bg18.svg",
-        "text": "No New Joinees!",
+        "text": "No new joiners!",
         "para": " No employees are joining this month."
       },
       "Leaving This Month": {
         "img": "bg18.svg",
-        "text": "No Exits Planned! ",
+        "text": "No exits planned! ",
         "para": "No employees are scheduled to leave this month."
       }
     },
     "homeDashboard": {
       "Announcements": {
         "img": "bg8.svg",
-        "text": "No Announcements Right Now!",
+        "text": "No announcements right now!",
         "para": "There are no important updates at the moment."
       },
       "New Joiners": {
         "img": "bg8.svg",
-        "text": "No New Faces!",
+        "text": "No new faces!",
         "para": "Looks like there are no new joiners this week."
       },
       "Birthdays": {
         "img": "bg8.svg",
-        "text": "No Candles Today!",
+        "text": "No candles today!",
         "para": "Looks like it's nobody's special day."
       },
       "Work Anniversaries": {
         "img": "bg8.svg",
-        "text": "No Cheers Today!",
+        "text": "No cheers today!",
         "para": "Looks like it's nobody's work anniversary today."
       }
     },
@@ -1464,7 +1464,7 @@
       "default": {
         "img": "bg46.svg",
         "text": "Leave balance details are unavailable",
-        "para": "'Teammates' leave balances will appear here once the leave policy is defined."
+        "para": "Teammates leave balances will appear here once the leave policy is defined."
       }
     }
   }
