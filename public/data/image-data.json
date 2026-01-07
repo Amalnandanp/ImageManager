@@ -11,7 +11,7 @@
       "default": {
         "img": "bg23.svg",
         "text": "Start building your ideal attendance policy!",
-        "para": "The attendance settings are waiting to be configured. Check back here after completing the required configurations."
+        "para": "The attendance settings are yet to be configured. Check back here after completing the required configurations."
       },
       "widgetOnTime": {
         "img": "bg58.svg"
@@ -29,7 +29,7 @@
     "challanGenerationESI": {
       "challan": {
         "img": "bg37.svg",
-        "text": "Oops! ESI challan is unavailable",
+        "text": "Oops! ESI challan unavailable",
         "para": "It seems like the salary for the selected month hasn't been processed. Once it’s done, you’ll be able to generate ESI challans here."
       },
       "returns": {
@@ -41,8 +41,8 @@
     "challanGenerationPF": {
       "challan": {
         "img": "bg37.svg",
-        "text": "Oops! PF challan is unavailable",
-        "para": "It looks like the salary for the selected month hasn't been processed. Once it’s done, you’ll be able to generate PF challans here."
+        "text": "Oops! PF challan unavailable",
+        "para": "It looks like the salary for the selected month hasn't been processed. Once it's done, you'll be able to generate the PF challans here."
       },
       "returns": {
         "img": "bg37.svg",
@@ -172,7 +172,7 @@
       },
       "inUse": {
         "img": "bg1.svg",
-        "text": "All items are idle",
+        "text": "All items are idle!",
         "para": "It seems there are currently no items marked as in use. Update the inventory list or check back later."
       },
       "inStock": {
@@ -236,7 +236,7 @@
       "default": {
         "img": "bg47.svg",
         "text": "Manage password resets",
-        "para": "Find and select employees to send new passwords or regenerate \nexisting ones as needed."
+        "para": "Find and select employees to send new passwords or regenerate existing ones as needed."
       }
     },
     "inviteEmployeeReset": {
@@ -270,7 +270,7 @@
     "loanAndAdvance": {
       "default": {
         "img": "bg16.svg",
-        "text": "Oops! No loans have been processed yet.",
+        "text": "Oops! No loans have been processed yet",
         "para": "Loan details will be available here once they are processed. Check back later for updates."
       }
     },
@@ -862,7 +862,7 @@
     "holidayCalendar": {
       "default": {
         "img": "bg27.svg",
-        "text": "Holiday policy not assigned.",
+        "text": "Holiday policy not assigned",
         "para": "It looks like the holiday policy is not assigned. The holiday calendar will be available here once it is assigned. Stay tuned!"
       }
     },
@@ -896,15 +896,15 @@
     "myConfirmedDeclaration": {
       "default": {
         "img": "bg20.svg",
-        "text": "Explore approved investment details!",
-        "para": "It seems there are no approved investment declarations yet. Once your submissions are approved, they will appear here for review."
+        "text": "Explore confirmed investment declarations",
+        "para": "Approved confirmed investment declarations will appear here once your proofs are approved."
       }
     },
     "myProposedDeclaration": {
       "default": {
         "img": "bg20.svg",
-        "text": "Explore proposed investment details!",
-        "para": "It seems there are no proposed investment declarations yet. Once they are declared, they will appear here for your review."
+        "text": "Explore proposed investment declarations",
+        "para": "Approved proposed investment declarations will appear here once your submissions are approved."
       }
     },
     "mySalaryStructure": {
@@ -917,8 +917,8 @@
     "myPayslip": {
       "default": {
         "img": "bg14.svg",
-        "text": "Oops! You are not included in the payroll for this period.",
-        "para": "Payslips will appear here once you are included in payroll processing."
+        "text": "Payslips not published yet",
+        "para": "Your payslips will appear here once the salary is published."
       }
     },
     "myTaxslip": {
@@ -960,7 +960,7 @@
     "myReimbursement": {
       "widgetReimbursementCategory": {
         "img": "bg13.svg",
-        "text": "No reimbursement categories have been added yet!"
+        "text": "Reimbursement categories will appear here once configured."
       },
       "widgetTotalReimbursement": {
         "img": "bg13.svg",
