@@ -331,6 +331,13 @@
         "para": "It looks like there are no documents available yet. Click the &quot;Add Document&quot; button to upload company policies or official documents for employees."
       }
     },
+    "announcements": {
+      "default": {
+        "img": "bg95.svg",
+        "text": "Oops! No announcements yet",
+        "para": "Create an announcement to start sharing updates with employees."
+      }
+    },
     "sidebarAcknowledgedManageDocument": {
       "default": {
         "img": "bg8.svg"
@@ -422,7 +429,7 @@
       "default": {
         "img": "bg16.svg",
         "text": "Oops! No revisions in sight",
-        "para": "It looks like there are currently no salary revisions available. First, assign a salary structure, and then you can revise salaries for existing employees and Oops! no revisions in sight."
+        "para": "There are no salary revisions yet. Once you revise an employee's salary, their history will appear here."
       }
     },
     "scheduledReports": {
@@ -435,6 +442,13 @@
     "templates": {
       "default": {
         "text": "No template added yet"
+      }
+    },
+    "idCardGeneration": {
+      "default": {
+        "img": "bg94.svg",
+        "text": "Get started with identity cards",
+        "para": "Assign a template to employees to generate their identity cards."
       }
     }
   },
@@ -478,7 +492,7 @@
       "default": {
         "img": "bg36.svg",
         "text": "Capture attendance your way.",
-        "para": "Ready to define how attendance will be tracked? Click 'Add Attendance Capture Policy' to customize your settings easily!."
+        "para": "Ready to define how attendance will be tracked? Click 'Add Attendance Capture Policy' to customize your settings easily."
       }
     },
     "attendanceRule": {
@@ -512,8 +526,8 @@
     "confirmationPolicy": {
       "default": {
         "img": "bg21.svg",
-        "text": "Let's set up a confirmation policy!",
-        "para": "It seems like the confirmation policy hasn't been configured yet. Click 'Add Confirmation Policy' to set up and manage the employee confirmation process."
+        "text": "Let's set up a confirmation policy",
+        "para": "It seems the confirmation policy hasn't been configured yet. Click 'Add Confirmation Policy' to set up and manage the employee confirmation process."
       }
     },
     "dataAccess": {
@@ -631,28 +645,28 @@
     "company": {
       "default": {
         "img": "bg44.svg",
-        "text": "Company details are not configured yet!",
+        "text": "Company details are not configured yet",
         "para": "Click 'Add Company' to input details and ensure all organizational data aligns with the corporate structure."
       }
     },
     "department": {
       "default": {
         "img": "bg18.svg",
-        "text": "Department list is not configured yet.",
-        "para": "Click 'Add Department' to create the Department master list to manage workflows efficiently."
+        "text": "Department list is not configured yet",
+        "para": "Click 'Add Department' to create the department master list and manage workflows efficiently."
       }
     },
     "designation": {
       "default": {
         "img": "bg10.svg",
-        "text": "Designations are not configured yet.",
+        "text": "Designations are not configured yet",
         "para": "Click 'Add Designation' to build a comprehensive list of all company designations for streamlined management."
       }
     },
     "grade": {
       "default": {
         "img": "bg42.svg",
-        "text": "Grades are not configured yet.",
+        "text": "Grades are not configured yet",
         "para": "Click 'Add Grade' to build the employee grade list."
       }
     },
@@ -660,27 +674,27 @@
       "default": {
         "img": "bg18.svg",
         "text": "Begin your journey with organization setup",
-        "para": "Begin by adding your organization's core details. Click the 'Add Organization' button to enter key information and set up the foundation for your HRMS."
+        "para": "Begin by adding your organization's core details. Click the 'Add Organization' button to enter key information and set up the foundation of your HRMS."
       }
     },
     "pageAccess": {
       "default": {
         "img": "bg19.svg",
-        "text": "Set page access permissions.",
+        "text": "Set page access permissions",
         "para": "It seems there are no page access permissions set up. Click the 'Add Page Access' button to configure settings for page visibility and editing."
       }
     },
     "payComponent": {
       "default": {
         "img": "bg26.svg",
-        "text": "It looks like pay components are not set.",
+        "text": "It looks like pay components are not set",
         "para": "Add pay components to create the salary structure. Click 'Add Pay Component' to feature them on the payslip."
       }
     },
     "payGroup": {
       "default": {
         "img": "bg29.svg",
-        "text": "It looks like pay groups are not set.",
+        "text": "It looks like pay groups are not set",
         "para": "Add pay groups to organize your salary structure. Use 'Add Pay Group' to configure them."
       }
     },
@@ -708,7 +722,7 @@
     "separationPolicy": {
       "default": {
         "img": "bg41.svg",
-        "text": "Time to set up a separation policy.",
+        "text": "Time to set up a separation policy",
         "para": "The separation policy isn't configured yet. Click 'Add Separation Policy' to manage employee exits smoothly."
       }
     },
@@ -828,6 +842,13 @@
         "img": "bg63.svg",
         "text": "Shift selection for rotation is pending. Drop and arrange the shifts here."
       }
+    },
+    "identityCardTemplate": {
+      "default": {
+        "img": "bg94.svg",
+        "text": "Templates not configured",
+        "para": "Identity card templates will appear here once they’re created."
+      }
     }
   },
   "profile": {
@@ -842,7 +863,7 @@
       "default": {
         "img": "bg39.svg",
         "text": "Advance manager",
-        "para": "You can add new advances and keep your records up to date."
+        "para": "Add new advances and keep your records up to date."
       }
     },
     "expenseReport": {
@@ -889,8 +910,8 @@
     "myForm16": {
       "default": {
         "img": "bg31.svg",
-        "text": "Oops! Form 16 not found.",
-        "para": "It looks like Form 16 has not yet been generated for the selected year. Select a different year or check back later."
+        "text": "Oops! Form 16 not found",
+        "para": "It looks like Form 16 has not been generated for the chosen year yet. Select a different year or check back later."
       }
     },
     "myConfirmedDeclaration": {
@@ -924,7 +945,7 @@
     "myTaxslip": {
       "default": {
         "img": "bg25.svg",
-        "text": "Tax slips will be available soon.",
+        "text": "Tax slips will be available soon",
         "para": "View and manage your tax slips with ease. Keep track of your tax information and compliance effortlessly."
       }
     },
@@ -1011,7 +1032,7 @@
     "request": {
       "default": {
         "img": "bg48.svg",
-        "text": "Let's begin! Raise new requests and keep track of them effortlessly.",
+        "text": "Let's begin! Raise new requests and keep track of them effortlessly",
         "para": "Get started by raising a request. Click 'New Request' to begin the process and manage all your requests seamlessly as they are published."
       },
       "active": {
@@ -1021,7 +1042,7 @@
       },
       "pending": {
         "img": "bg48.svg",
-        "text": "Spotless! No pending requests.",
+        "text": "Spotless! No pending requests",
         "para": "Enjoy a moment of peace. There are no pending request in your list."
       },
       "rejected": {
@@ -1054,7 +1075,7 @@
     "employeeDirectory": {
       "default": {
         "img": "bg12.svg",
-        "text": "Directory not yet populated.",
+        "text": "Directory not yet populated",
         "para": "The employee directory will be available once details are added. Stay tuned to view your colleagues' profiles."
       }
     },
@@ -1064,8 +1085,8 @@
         "text": "Leave balances for your team aren't updated yet."
       },
       "widgetAttendanceSummary": {
-        "img": "bg7.svg",
-        "text": "No data to show for your attendance summary"
+        "img": "bg46.svg",
+        "text": "Your attendance summary will appear here once attendance records are updated"
       },
       "widgetYesterdaysWorkingHRS": {
         "img": "bg58.svg",
@@ -1079,9 +1100,13 @@
         "img": "bg27.svg",
         "text": "No upcoming holidays scheduled."
       },
+      "widgetJoiner": {
+        "img": "bg18.svg",
+        "text": "No employees are joining this month."
+      },
       "widgetTimeOff": {
         "img": "bg56.svg",
-        "text": "No team time-off records to display at the moment."
+        "text": "No peers' time-off records to display at the moment."
       },
       "widgetQuickLinks": {
         "img": "bg71.svg",
@@ -1092,8 +1117,16 @@
         "text": "No external links available."
       },
       "widgetCelebration": {
-        "img": "bg80.svg",
-        "text": "No celebrations lined up today!"
+        "img": "bg69.svg",
+        "text": "No celebrations today. Check back soon and send your wishes!!"
+      },
+      "widgetFeatured": {
+        "img": "bg96.svg",
+        "text": "New features will be highlighted here as soon as they're ready."
+      },
+      "feedWall": {
+        "img": "bg71.svg",
+        "text": "No news to share yet!"
       }
     },
     "financialDashboard": {
@@ -1168,8 +1201,8 @@
       },
       "sidebarWFH": {
         "img": "bg66.svg",
-        "text": "Everyone's in!",
-        "para": "No employees are currently working from home."
+        "text": "No remote work today!",
+        "para": "All team members are present at the workplace."
       },
       "sidebarLate": {
         "img": "bg9.svg",
@@ -1219,7 +1252,7 @@
       "default": {
         "img": "bg15.svg",
         "text": "Real-time locations at your fingertips",
-        "para": "To view live locations, ensure that employees have enabled location tracking in their mobile app settings. Once active, their locations will appear here."
+        "para": "To view live locations, ensure employees have enabled location tracking in their mobile app settings. Once active, their locations will appear here."
       }
     },
     "profileSnapshot": {
@@ -1281,7 +1314,7 @@
     "profileDocuments": {
       "default": {
         "img": "bg8.svg",
-        "text": "Document master is not set up.",
+        "text": "Document master is not set up",
         "para": "Currently, document master is not available. Get started with the document upload once the document master is configured."
       },
       "noPermission": {
@@ -1293,17 +1326,17 @@
     "profileGeoLocation": {
       "default": {
         "img": "bg15.svg",
-        "text": "Oops! Geo location not assigned.",
+        "text": "Oops! Geo location not assigned",
         "para": "Geo location is not assigned at the moment. Once it's assigned, the system will allow you to mark attendance within the premises of the assigned geo location."
       },
       "withPermission": {
         "img": "bg15.svg",
-        "text": "Oops! Geo location not assigned.",
+        "text": "Oops! Geo location not assigned",
         "para": "Geo location is not yet assigned to this employee. You can define geo location and then assign them to the employee. Once assigned, employee can mark attendance inside the premises of the assigned geo location."
       },
       "withoutPermission": {
         "img": "bg15.svg",
-        "text": "Oops! Geo location not assigned.",
+        "text": "Oops! Geo location not assigned",
         "para": "Geo location is not yet assigned to this employee. Currently you do not have rights to assign geo location to employees. Please contact admin for more details."
       }
     },
@@ -1441,8 +1474,8 @@
     "homeDashboard": {
       "Announcements": {
         "img": "bg8.svg",
-        "text": "No announcements right now!",
-        "para": "There are no important updates at the moment."
+        "text": "Oops! No announcements yet!",
+        "para": "Create an announcement to start sharing updates with employees."
       },
       "New Joiners": {
         "img": "bg8.svg",
